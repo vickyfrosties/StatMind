@@ -1,0 +1,36 @@
+:root {
+    background-color: #202c31;
+    background-color: #EDF2F4;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@media (min-width : 390px) and (max-width: 550px) {
+    .container {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 70px;
+        background-color: #202c31;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        div {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 50%;
+            }
+        }
+    }
+
+}

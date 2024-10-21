@@ -1,0 +1,10 @@
+:root {
+  background-color: #edf2f4;
+  color-scheme: light dark;
+  color: #202c31;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
