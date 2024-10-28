@@ -2,7 +2,7 @@
   --background-color: #edf2f4;
   color-scheme: light dark;
   --color: #202c31;
-
+  --title: "Khand", serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

@@ -13,8 +13,12 @@ const LaunchingPage = () => {
       <div className={styles.buttons_section}>
         <Link className={styles.button} to="/register">Sign In</Link>
         <Link className={styles.button} to="/login">Login</Link>
-
       </div>
+
+      <div className={styles.conditions}>
+        <p>By continuing, you agree to the StatMind <span className={styles.conditions_span}>Terms of Service</span> and <span className={styles.conditions_span}>Privacy Policy</span>.</p>
+      </div>
+
     </>
   );
 };
