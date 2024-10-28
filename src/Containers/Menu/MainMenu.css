@@ -10,6 +10,12 @@
 }
 
 @media (min-width : 390px) and (max-width: 550px) {
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
     .container {
         position: fixed;
         bottom: 0;
@@ -19,6 +25,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
 
         div {
             width: 100%;
