@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
-.logo {
-  width: 10%;
+@media (min-width: 390px) and (max-width: 550px) {
+  .first_section {
+    border: 3px solid red;
+
+    img {
+      width: 30%;
+    }
+  }
+
+
 }

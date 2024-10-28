@@ -7,7 +7,7 @@ const RegisterForm = () => {
     <>
       <section className={styles.container}>
         <Link to="/launch">
-          <img src="/public/Icons/back.png" alt="Go back Icon" />
+          <img src="/Icons/back.png" alt="Go back Icon" />
         </Link>
         <h2>Sign In</h2>
         <form className={styles.formulaire} action="">
