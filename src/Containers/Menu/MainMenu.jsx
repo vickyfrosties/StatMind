@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./MainMenu.css";
 
 const MainMenu = () => {
@@ -5,19 +6,19 @@ const MainMenu = () => {
     return (
         <>
             <section className="container">
-                <div>
+                <Link to="/">
                     <img src="/Icons/house.svg" alt="Home Icon" />
-                </div>
+                </Link>
 
-                <div>
+                <Link to="/history">
                     <img src="/Icons/clock-counter-clockwise.svg" alt="History Icon" />
-                </div>
-                <div>
+                </Link>
+                <Link to="/statistics">
                     <img src="/Icons/chart-donut.svg" alt="Statistics Icon" />
-                </div>
-                <div>
+                </Link>
+                <Link to="/profile">
                     <img src="/Icons/user.svg" alt="Profile Icon" />
-                </div>
+                </Link>
             </section>
         </>
     );
