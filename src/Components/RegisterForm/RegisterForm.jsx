@@ -13,7 +13,7 @@ const RegisterForm = () => {
         <form className={styles.formulaire} action="">
           <input type="text" name="Username" placeholder="Username" />
           <input type="text" name="Email" placeholder="Email" />
-          <input type="text" name="Password" placeholder="Password" />
+          <input type="password" name="Password" placeholder="Password" />
         </form>
         <div className={styles.rules}>
           <p>Must include :</p>
