@@ -51,8 +51,8 @@ body {
     }
 
     .rules {
-      /* border: 3px solid red; */
       width: 50%;
+      height: 150px;
       padding: 10px;
       font-family: "Overpass", sans-serif;
       font-optical-sizing: auto;
