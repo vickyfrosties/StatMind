@@ -1,10 +1,14 @@
-import express from "express";
+const express = require("express");
+const path = require("path");
+import connectDB from "./database";
+
 const app = express();
+app.use(express.json());
 
-app.use("/login", (request, response) => {
-  response.send({
-    token: "test123"
-  });
-});
+connectDB();
 
-app.listen(8000, () => { console.log("API UP ON HTTP://LOCALHOST:8000/LOGIN!"); });
+app.use("",);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+
