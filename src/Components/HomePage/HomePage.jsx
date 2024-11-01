@@ -3,7 +3,7 @@ import styles from "./HomePage.module.css";
 import MainMenu from "../../Containers/Menu/MainMenu";
 
 const HomePage = () => {
-  const [user, setUser] = useState("Sounia");
+  const [user, setUser] = useState("vicky");
 
 
   return (
