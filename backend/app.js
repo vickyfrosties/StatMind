@@ -18,26 +18,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/users");
 app.post('/register', async (request, response) => {
   console.log('Received data:', request.body);
 
-  // async function createMember(body) {
-  //   const  =  await Books.create({
-  //       title : body.title,
-  //       serie:body.serie,
-  //       volume : body.volume,
-  //       author : body.author,
-  //       category : body.category,
-  //       summary : body.summary,
-  //       opinion : body.opinion,
-  //       finished: body.finished,
-  //       type : body.type,
-  //       returned: body.returned,
-  //       lent: body.lent,
-  //       borrower: body.borrower
-  //   })
-
-  //   const result = await newBook.save()
-  //   return result
-  // }
-
   try {
     const member = new Users(request.body);
     await member.save();
