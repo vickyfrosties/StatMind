@@ -12,20 +12,19 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form submitted");
-    console.log("Username:" + " " + username);
-    console.log("email:" + " " + email);
-    console.log("Password:" + " " + password);
     console.log("Sending data:", { username, email, password });
 
-    await axios.post("http://127.0.0.1:5173/register", { username, email, password }, {
-      headers: {
-        "Content-Type": "application/json",
-      }
-    },
+    await axios.post("http://127.0.0.1:5173/register", { username, email, password },
+
     )
 
       .then(result => {
-        console.log("Server response:", result);
+        if (result.data.message) {
+          console.log(result.data.message);
+        }
+        else {
+          console.log("Unexpected response:", result);
+        }
       })
 
       .catch(err => console.log("Error:", err));
@@ -55,7 +54,7 @@ const RegisterForm = () => {
           <button onClick={handleSubmit} type="submit">Register</button>
         </Link>
 
-        <p className={styles.redirection}>Already have an account ? <span className={styles.log_redirection}><Link to="/">Login.</Link></span></p>
+        <p className={styles.redirection}>Already have an account ? <span className={styles.log_redirection}><Link to="/register">Login.</Link></span></p>
       </section>
     </>
   );
