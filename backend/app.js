@@ -6,7 +6,7 @@ const Users = require("./Models/Users");
 const app = express();
 
 // autorize requests between cross-origin
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:5173' }));
 
 // transfers the data in json
 app.use(express.json());
@@ -27,6 +27,7 @@ app.post('/register', async (request, response) => {
     response.send({ message: 'Error registering member', error });
   }
 });
+
 
 app.listen(8000, () => {
   console.log("Server is running");
