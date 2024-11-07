@@ -4,7 +4,29 @@
   box-sizing: border-box;
 }
 
+:root {
+  --title: "Khand", serif;
+  --text: "Overpass", sans-serif;
+}
+
 body {
   background-color: var(--background-color);
   color: var(--color);
+}
+
+.main_container {
+  padding: 2rem;
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+
+  h2 {
+    font-family: var(--text);
+
+  }
+
 }

@@ -9,6 +9,8 @@
     box-sizing: border-box;
 }
 
+
+
 @media (min-width : 390px) and (max-width: 550px) {
     * {
         padding: 0;
