@@ -7,8 +7,8 @@ const Members = require("./Models/Members");
 const app = express();
 
 // autorize requests between cross-origin
+
 app.use(cors({
-  API_URL: "http://localhost:5173",
   origin: process.env.API_URL,
   credentials: true
 }));
@@ -19,7 +19,7 @@ app.use(express.json());
 //  create the connection with mongodb
 mongoose.connect("mongodb://127.0.0.1:27017/users");
 
-app.post('/register', async (request, response) => {
+app.post("/register", async (request, response) => {
   console.log('Data received:', request.body);
 
   try {

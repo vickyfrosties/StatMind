@@ -15,7 +15,6 @@ const RegisterForm = () => {
     console.log("Sending data:", { username, email, password });
 
     await axios.post("http://127.0.0.1:5173/register", { username, email, password },
-
     )
 
       .then(result => {

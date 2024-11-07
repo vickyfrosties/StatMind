@@ -3,6 +3,7 @@ import styles from "./HomePage.module.css";
 import MainMenu from "../../Containers/Menu/MainMenu";
 import Header from "../../Containers/Header/Header";
 import Footer from "../../Containers/Footer/Footer";
+import MediaQuery from "react-responsive";
 
 const HomePage = () => {
   const [user, setUser] = useState("vicky");
@@ -10,14 +11,21 @@ const HomePage = () => {
 
   return (
     <>
-      <Header />
+      <MediaQuery minWidth={550}>
+        <Header />
+      </MediaQuery>
       <div className={styles.main_container}>
         <h2>Hi {user}, how do you feel today?</h2>
-        <img src="/public/Logo/Colors Wheel.png" alt="Color's Wheel" />
-
+        <MediaQuery minWidth={550}>
+          <img src="/Logo/Colors Wheel.png" alt="Color's Wheel" />
+        </MediaQuery>
       </div>
+
       <MainMenu />
-      <Footer />
+      <MediaQuery minWidth={550}>
+        <Footer />
+
+      </MediaQuery>
     </>
   );
 };
