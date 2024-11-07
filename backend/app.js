@@ -1,12 +1,17 @@
 const express = require("express");
 // used for database modeling
 const mongoose = require("mongoose");
-const cors = require('cors');
-const Users = require("./Models/Users");
+const cors = require("cors");
+const Visitors = require("./Models/Visitors");
+const Members = require("./Models/Members");
 const app = express();
 
 // autorize requests between cross-origin
-app.use(cors());
+app.use(cors({
+  API_URL: "http://localhost:5173",
+  origin: process.env.API_URL,
+  credentials: true
+}));
 
 // transfers the data in json
 app.use(express.json());
@@ -14,39 +19,32 @@ app.use(express.json());
 //  create the connection with mongodb
 mongoose.connect("mongodb://127.0.0.1:27017/users");
 
-// we're creating the route where we will get the request from and post it as a response from our database. This makes the link between front and backend.Post method
 app.post('/register', async (request, response) => {
-  console.log('Received data:', request.body);
-
-  // async function createMember(body) {
-  //   const  =  await Books.create({
-  //       title : body.title,
-  //       serie:body.serie,
-  //       volume : body.volume,
-  //       author : body.author,
-  //       category : body.category,
-  //       summary : body.summary,
-  //       opinion : body.opinion,
-  //       finished: body.finished,
-  //       type : body.type,
-  //       returned: body.returned,
-  //       lent: body.lent,
-  //       borrower: body.borrower
-  //   })
-
-  //   const result = await newBook.save()
-  //   return result
-  // }
+  console.log('Data received:', request.body);
 
   try {
-    const member = new Users(request.body);
-    await member.save();
-    response.send({ message: 'Member registered!' });
+    const visitor = new Visitors(request.body);
+    await visitor.save();
+    response.send({ message: 'New Member registered!' });
   }
   catch (error) {
-    response.send({ message: 'Error registering member', error });
+    response.status(500).send({ message: 'Error registering new member', error });
   }
 });
+
+app.post("/login", async (request, response) => {
+  console.log("Data received:", request.body);
+
+  try {
+    const member = new Members(request.body);
+    await member.save();
+    response.send("Member is connected !");
+  }
+  catch (error) {
+    response.status(500).send({ message: "Error when member try to connect", error });
+  }
+});
+
 
 app.listen(8000, () => {
   console.log("Server is running");

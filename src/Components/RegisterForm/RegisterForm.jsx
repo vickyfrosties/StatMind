@@ -9,13 +9,22 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Form submitted");
     console.log("Sending data:", { username, email, password });
 
-    axios.post("http://127.0.0.1:5173/register", { username, email, password })
+    await axios.post("http://127.0.0.1:5173/register", { username, email, password },
+
+    )
+
       .then(result => {
-        console.log("Server response:", result);
+        if (result.data.message) {
+          console.log(result.data.message);
+        }
+        else {
+          console.log("Unexpected response:", result);
+        }
       })
 
       .catch(err => console.log("Error:", err));
@@ -29,10 +38,10 @@ const RegisterForm = () => {
         </Link>
         <h2>Sign In</h2>
 
-        <form onSubmit={handleSubmit} className={styles.formulaire}>
-          <input type="text" name="Username" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
-          <input type="text" name="Email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-          <input type="password" name="Password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+        <form className={styles.formulaire}>
+          <input type="text" name="username" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+          <input type="email" name="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+          <input type="password" name="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
         </form>
 
         <div className={styles.rules}>
@@ -42,10 +51,10 @@ const RegisterForm = () => {
         </div>
 
         <Link to="/" className={styles.register_confirmed}>
-          <button type="submit">Register</button>
+          <button onClick={handleSubmit} type="submit">Register</button>
         </Link>
 
-        <p className={styles.redirection}>Already have an account ? <span className={styles.log_redirection}><Link to="/">Login.</Link></span></p>
+        <p className={styles.redirection}>Already have an account ? <span className={styles.log_redirection}><Link to="/register">Login.</Link></span></p>
       </section>
     </>
   );
