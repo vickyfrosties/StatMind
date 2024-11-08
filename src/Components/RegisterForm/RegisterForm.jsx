@@ -9,7 +9,7 @@ const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
 
   const handleSubmit = async (e) => {
@@ -19,6 +19,7 @@ const RegisterForm = () => {
     await axios.post("http://localhost:8000/register", { username, email, password })
       .then(result => {
         console.log("Request response:", result);
+        navigate("/");
       })
 
       .catch(error => console.log("Error:", error));
