@@ -1,15 +1,14 @@
 const express = require("express");
 // used for database modeling
 const mongoose = require("mongoose");
-const cors = require("cors");
 const Visitors = require("./Models/Visitors");
 const Members = require("./Models/Members");
 const app = express();
 
 // autorize requests between cross-origin
-
+const cors = require("cors");
 app.use(cors({
-  origin: process.env.API_URL,
+  origin: "http://localhost:5173",
   credentials: true
 }));
 
@@ -20,15 +19,15 @@ app.use(express.json());
 mongoose.connect("mongodb://127.0.0.1:27017/users");
 
 app.post("/register", async (request, response) => {
-  console.log('Data received:', request.body);
 
   try {
+    console.log('Registration request received:', request.body);
     const visitor = new Visitors(request.body);
     await visitor.save();
-    response.send({ message: 'New Member registered!' });
+    response.send("New Member registered!");
   }
   catch (error) {
-    response.status(500).send({ message: 'Error registering new member', error });
+    response.status(500).send("Error registering new member:", error);
   }
 });
 
@@ -41,7 +40,7 @@ app.post("/login", async (request, response) => {
     response.send("Member is connected !");
   }
   catch (error) {
-    response.status(500).send({ message: "Error when member try to connect", error });
+    response.status(500).send("Error when member try to connect", error);
   }
 });
 

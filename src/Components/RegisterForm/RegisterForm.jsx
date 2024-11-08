@@ -11,22 +11,14 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted");
     console.log("Sending data:", { username, email, password });
 
-    await axios.post("http://127.0.0.1:5173/register", { username, email, password },
-    )
-
+    await axios.post("http://localhost:8000/register", { username, email, password })
       .then(result => {
-        if (result.data.message) {
-          console.log(result.data.message);
-        }
-        else {
-          console.log("Unexpected response:", result);
-        }
+        console.log("Request response:", result);
       })
 
-      .catch(err => console.log("Error:", err));
+      .catch(error => console.log("Error:", error));
   };
 
   return (

@@ -10,19 +10,14 @@ const LoginForm = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        console.log("Member connected", { username, password });
+        console.log("Successful connection", { username, password });
 
-        await axios.post("http://127.0.0.1:5173/login", { username, password },
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                }
-            },
+        await axios.post("http://localhost:8000/login", { username, password },
         )
             .then(result => {
-                console.log(result);
+                console.log("Request response:", result);
             })
-            .catch(err => console.log("Error:", err));
+            .catch(error => console.log("Error:", error));
     };
 
 
