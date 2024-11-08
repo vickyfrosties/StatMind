@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+@media (min-width: 390px) and (max-width: 550px) {
+    .main_section {
+        /* border: 2px solid red; */
+        width: 80vw;
+        height: 90vh;
+        /* min-height: 80vh; */
+        display: flex;
+        flex-direction: column;
+        /* justify-content: space-around; */
+
+        .title {
+            font-family: "Khand", sans-serif;
+            font-size: 35px;
+            margin-bottom: 1rem;
+        }
+
+        .buttons_container {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+
+            button {
+                border: 1px solid #202C31;
+                border-radius: 5px;
+                background-color: #EDF2F4;
+                width: 90px;
+                height: 50px;
+                color: #202C31;
+                font-family: "Khand", sans-serif;
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .snd_section {
+        width: 100%;
+        border: 1px solid blue;
+    }
+}

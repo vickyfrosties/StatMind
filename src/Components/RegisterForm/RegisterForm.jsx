@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./RegisterForm.module.css";
+import "/fonts.modules.css";
 import { useState } from "react";
 import axios from "axios";
 
@@ -8,6 +9,8 @@ const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,9 +44,9 @@ const RegisterForm = () => {
           <p>▪ at least one capital letter</p>
         </div>
 
-        <Link to="/" className={styles.register_confirmed}>
-          <button onClick={handleSubmit} type="submit">Register</button>
-        </Link>
+        {/* <Link to="/" className={styles.register_confirmed}> */}
+        <button className={styles.register_btn} onClick={handleSubmit} type="submit">Register</button>
+        {/* </Link> */}
 
         <p className={styles.redirection}>Already have an account ? <span className={styles.log_redirection}><Link to="/register">Login.</Link></span></p>
       </section>
