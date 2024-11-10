@@ -24,9 +24,7 @@ const LoginForm = () => {
     return (
         <>
             <div className={styles.first_section}>
-                <img src="/Logo/StatMind - Logo.png" alt="StatMind Logo" />
-                <h3>StatMind</h3>
-                <h3>Reflect. Track. Grow.</h3>
+                <img src="./Logo/LogoWhiteV.png" alt="StatMind Logo" />
             </div>
 
             <h3>Welcome back! Log in to continue.</h3>

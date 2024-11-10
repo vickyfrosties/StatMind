@@ -16,8 +16,6 @@ body {
   }
 
   .first_section {
-    width: 250px;
-    height: 220px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,7 +23,7 @@ body {
     line-height: 1.5;
 
     img {
-      width: 100px;
+      width: 150px;
       margin-bottom: 1rem;
     }
 

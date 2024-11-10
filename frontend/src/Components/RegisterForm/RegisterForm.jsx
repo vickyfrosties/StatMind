@@ -28,9 +28,6 @@ const RegisterForm = () => {
   return (
     <>
       <section className={styles.container}>
-        <Link to="/launch">
-          <img src="/Icons/back.png" alt="Go back Icon" />
-        </Link>
         <h2>Sign In</h2>
 
         <form className={styles.formulaire}>
@@ -49,7 +46,8 @@ const RegisterForm = () => {
         <button className={styles.register_btn} onClick={handleSubmit} type="submit">Register</button>
         {/* </Link> */}
 
-        <p className={styles.redirection}>Already have an account ? <span className={styles.log_redirection}><Link to="/register">Login.</Link></span></p>
+        <p className={styles.redirection}>Already have an account ?
+          <Link className={styles.log_redirection} to="/login"> Login</Link></p>
       </section>
     </>
   );

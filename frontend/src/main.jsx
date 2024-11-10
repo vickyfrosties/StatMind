@@ -8,8 +8,18 @@ import routes from './routes.jsx';
 
 const router = createBrowserRouter(routes);
 
+createBrowserRouter(routes, {
+  future: {
+    v7_relativeSplatPath: true,
+  },
+});
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider future={{
+      v7_startTransition: true,
+    }} router={router} />
+
+
   </StrictMode>,
 );

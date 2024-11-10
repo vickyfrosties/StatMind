@@ -41,6 +41,16 @@
                 height: 36px;
             }
         }
+
+        button {
+            background-color: transparent;
+            border: none;
+            position: fixed;
+            bottom: 38px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 
 }
