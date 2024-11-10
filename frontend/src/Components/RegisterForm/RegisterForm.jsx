@@ -42,9 +42,9 @@ const RegisterForm = () => {
           <p>▪ at least one capital letter</p>
         </div>
 
-        {/* <Link to="/" className={styles.register_confirmed}> */}
-        <button className={styles.register_btn} onClick={handleSubmit} type="submit">Register</button>
-        {/* </Link> */}
+        <div className={styles.register_container}>
+          <button className={styles.register_btn} onClick={handleSubmit} type="submit">Register</button>
+        </div>
 
         <p className={styles.redirection}>Already have an account ?
           <Link className={styles.log_redirection} to="/login"> Login</Link></p>

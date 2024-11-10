@@ -15,7 +15,6 @@ body {
   height: 90px;
   display: flex;
 
-
   div {
     width: 50%;
     display: flex;
@@ -23,7 +22,6 @@ body {
 
     img {
       width: 100px;
-      /* height: 100%; */
       padding: 1.5rem;
     }
 

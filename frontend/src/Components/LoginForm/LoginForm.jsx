@@ -34,10 +34,10 @@ const LoginForm = () => {
                 <input type="password" name="Password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
             </form>
             <Link className={styles.btn_container} to="/">
-                <button onClick={handleSubmit} type="submit" className={styles.register_btn}>Register</button>
+                <button onClick={handleSubmit} type="submit" className={styles.register_btn}>Log in</button>
             </Link>
 
-            <p className={styles.p_login}>Don't have an account ? <span className={styles.signin_span}><Link to="/register">Sign In</Link></span></p>
+            <p className={styles.p_login}>Don't have an account ? <span className={styles.signin_span}><Link to="/register">Create an account</Link></span></p>
         </>
     );
 };

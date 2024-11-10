@@ -9,10 +9,7 @@ const Header = () => {
           <img src="/Logo/StatMind - Logo.png" alt="StatMind Logo" />
           <h3>StatMind.</h3>
           <h3>Reflect. Track. Grow.</h3>
-
         </div>
-
-
       </header>
     </>
   );
