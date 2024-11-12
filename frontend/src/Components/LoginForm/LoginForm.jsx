@@ -10,7 +10,6 @@ const LoginForm = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        console.log("Successful connection", { username, password });
 
         await axios.post("http://localhost:8000/login", { username, password },
         )

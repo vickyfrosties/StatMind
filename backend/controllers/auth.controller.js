@@ -11,20 +11,28 @@ async function registrationController(req, res) {
 
   try {
     const { username, email, password } = req.body;
-    const visitor = new Visitors({ username, email, password });
-    await visitor.save();
+    // const visitor = new Visitors({ username, email, password });
+    // await visitor.save();
 
-    const data = { username, email, password };
+    // check if the username already exist
+    const existingMember = await Members.findOne({ username });
+    if (existingMember) {
+      return res.status(400).json({ error: "Username already exist. Please choose another one." });
+    }
 
+    const data = { username, email };
     // generates the token
     const token = jwtTool.generate(data);
-    res.status(200).json({ token });
+
+    const newMember = new Members({ username, email, password, authToken: token });
+    await newMember.save();
+    res.status(201).json({ message: "Account created successfully !", token });
 
     // it saves the token in the db
-    visitor.authToken = token;
+    // visitor.authToken = token;
 
     // update the token
-    await visitor.save();
+    // await visitor.save();
   }
 
   catch (error) {
@@ -33,26 +41,31 @@ async function registrationController(req, res) {
   }
 }
 
-
 async function loginController(req, res) {
-  console.log("Data received:", req.body);
 
   try {
-    const { username, password } = req.body;
-    const member = new Members({ username, password });
-    await member.save();
-    res.send("Member is connected !");
+    const { username, password, token } = req.body;
 
-    // TODO - token verification
-    if (username !== req.username || password !== req.password) {
-      res.send({ error: "There is no existing account for this username, please create a new account or try again" });
+    const memberCreds = await Members.findOne({ username, password });
+
+    // check if the account does exist by its username & pwd
+    if (!memberCreds) {
+      return res.status(404).json({ error: "No account found with this username. Please register." });
     }
 
-  }
-  catch (error) {
-    res.status(500).send("Error when member try to connect", error);
+    // Check if the provided token matches the stored token
+    if (memberCreds.authToken !== token) {
+      console.error("error:", error);
+      return res.status(401).json({ error: "Invalid token. Access denied." });
+    }
+
+    res.status(200).json({ success: "Access authorized!" });
+    // await memberCreds.save();
   }
 
-  return;
+  catch (error) {
+    res.status(500).send("Error when member tries to connect", error);
+  }
+
 }
 module.exports = { registrationController, loginController };

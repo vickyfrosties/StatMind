@@ -16,9 +16,7 @@ const HomePage = () => {
       </MediaQuery>
       <div className={styles.main_container}>
         <h2>Hi {user}, how do you feel today?</h2>
-        <MediaQuery minWidth={550}>
-          <img src="/Logo/Colors Wheel.png" alt="Color's Wheel" />
-        </MediaQuery>
+        <img src="/Logo/Colors-Wheel.png" alt="Color's Wheel" />
       </div>
 
       <MainMenu />
