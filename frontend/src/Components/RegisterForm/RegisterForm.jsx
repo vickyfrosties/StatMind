@@ -19,6 +19,9 @@ const RegisterForm = () => {
     await axios.post("http://localhost:8000/register", { username, email, password })
       .then(result => {
         console.log("Request response:", result);
+        if (result.status === 200) {
+          localStorage.setItem("username", result.data.username);
+        }
         navigate("/");
       })
 

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
 import { useState } from "react";
 import axios from "axios";
@@ -7,14 +7,22 @@ const LoginForm = () => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async e => {
         e.preventDefault();
 
-        await axios.post("http://localhost:8000/login", { username, password },
-        )
+        await axios.post("http://localhost:8000/login", { username, password },)
             .then(result => {
                 console.log("Request response:", result);
+                if (result.status === 200) {
+                    localStorage.setItem("username", result.data.username);
+                    navigate("/");
+                }
+                else {
+                    console.log(result.error);
+                }
+
             })
             .catch(error => console.log("Error:", error));
     };

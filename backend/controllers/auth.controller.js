@@ -16,8 +16,7 @@ async function registrationController(req, res) {
     // check if the username already exist
     const existingMember = await Members.findOne({ username });
     if (existingMember) {
-      // return res.status(400).json({ error: "Username already exist. Please choose another one." });
-      console.log("Username already exist. Please choose another one.");
+      return res.status(400).json({ error: "Username already exist. Please choose another one." });
     }
 
     // generate a salt. 10 is the default value
@@ -49,27 +48,28 @@ async function loginController(req, res) {
     const { username, password } = req.body;
 
     // try to find the username & pwd if they exists
-    const memberCreds = await Members.findOne({ username, password });
+    const memberCreds = await Members.findOne({ username });
 
     // compare if the username & pwd stocked in the db is the same as the one that the user is entering
-    if (memberCreds) {
-      const pwdComparaison = bcrypt.compare(memberCreds.password, password, function (error, res) {
-        if (memberCreds && pwdComparaison) {
-          return res.status(201).json({ success: "Credentials valid." });
-        }
-
-        else {
-          return res.status(400).json({ error: "User and password not matching" });
-        }
-
-      });
+    if (!memberCreds) {
+      return res.status(400).json({ error: "There's no account with this username. Please create an account." });
     }
 
-    res.status(200).json({ success: "Access authorized!" });
+    const isPwdValid = await bcrypt.compare(password, memberCreds.password);
+
+    if (isPwdValid) {
+      return res.status(200).json({ success: "Credentials valid. Access authorized.", username: memberCreds.username });
+
+    }
+
+    else {
+      res.status(400).json({ error: "Username and password not correct. Please try again." });
+    }
   }
 
   catch (error) {
     res.status(500).send("Error when member tries to connect", error);
+    console.error("Error when member tries to connect:", error);
   }
 
 }

@@ -6,8 +6,7 @@ import Footer from "../../Containers/Footer/Footer";
 import MediaQuery from "react-responsive";
 
 const HomePage = () => {
-  const [user, setUser] = useState("vicky");
-
+  const username = localStorage.getItem("username");
 
   return (
     <>
@@ -15,7 +14,7 @@ const HomePage = () => {
         <Header />
       </MediaQuery>
       <div className={styles.main_container}>
-        <h2>Hi {user}, how do you feel today?</h2>
+        <h2>Hi {username}, how do you feel today?</h2>
         <img src="/Logo/Colors-Wheel.png" alt="Color's Wheel" />
       </div>
 
