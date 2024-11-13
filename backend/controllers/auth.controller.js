@@ -2,6 +2,7 @@ const Members = require("../Models/Members");
 const Visitors = require("../Models/Visitors");
 const mongoose = require("mongoose");
 const jwtTool = require("../tools/jwt.tool");
+const bcrypt = require("bcrypt");
 
 // connection with db
 mongoose.connect("mongodb://127.0.0.1/users");
@@ -11,28 +12,29 @@ async function registrationController(req, res) {
 
   try {
     const { username, email, password } = req.body;
-    // const visitor = new Visitors({ username, email, password });
-    // await visitor.save();
 
     // check if the username already exist
     const existingMember = await Members.findOne({ username });
     if (existingMember) {
-      return res.status(400).json({ error: "Username already exist. Please choose another one." });
+      // return res.status(400).json({ error: "Username already exist. Please choose another one." });
+      console.log("Username already exist. Please choose another one.");
     }
 
+    // generate a salt. 10 is the default value
+    const salt = await bcrypt.genSalt();
+
+    // this gets the current password in db and hash it
+    const pwdHashed = await bcrypt.hash(password, salt);
+    const passwordHshd = await Members.create({ username, email, password: pwdHashed });
+
     const data = { username, email };
+
     // generates the token
     const token = jwtTool.generate(data);
 
-    const newMember = new Members({ username, email, password, authToken: token });
-    await newMember.save();
+    // const newMember = new Members({ username, email, password: passwordHshd, authToken: token });
+    // await newMember.save();
     res.status(201).json({ message: "Account created successfully !", token });
-
-    // it saves the token in the db
-    // visitor.authToken = token;
-
-    // update the token
-    // await visitor.save();
   }
 
   catch (error) {
@@ -44,23 +46,26 @@ async function registrationController(req, res) {
 async function loginController(req, res) {
 
   try {
-    const { username, password, token } = req.body;
+    const { username, password } = req.body;
 
+    // try to find the username & pwd if they exists
     const memberCreds = await Members.findOne({ username, password });
 
-    // check if the account does exist by its username & pwd
-    if (!memberCreds) {
-      return res.status(404).json({ error: "No account found with this username. Please register." });
-    }
+    // compare if the username & pwd stocked in the db is the same as the one that the user is entering
+    if (memberCreds) {
+      const pwdComparaison = bcrypt.compare(memberCreds.password, password, function (error, res) {
+        if (memberCreds && pwdComparaison) {
+          return res.status(201).json({ success: "Credentials valid." });
+        }
 
-    // Check if the provided token matches the stored token
-    if (memberCreds.authToken !== token) {
-      console.error("error:", error);
-      return res.status(401).json({ error: "Invalid token. Access denied." });
+        else {
+          return res.status(400).json({ error: "User and password not matching" });
+        }
+
+      });
     }
 
     res.status(200).json({ success: "Access authorized!" });
-    // await memberCreds.save();
   }
 
   catch (error) {
