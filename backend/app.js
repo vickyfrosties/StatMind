@@ -17,12 +17,13 @@ app.use(express.json());
 // if there's a token it will be saved in all the files. Middleware to handle jwt
 app.use((request, response, next) => {
   const authHeader = request.headers["authorization"];
+
   // split the response to only get the token part if token exist
   const token = authHeader && authHeader.split(" ")[1];
 
   // if there's no token then end it
   if (!token) {
-    // with next() it goes on the next action
+    // next() goes on the next action
     next();
     return;
   }

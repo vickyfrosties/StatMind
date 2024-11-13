@@ -1,5 +1,4 @@
 const Members = require("../Models/Members");
-const Visitors = require("../Models/Visitors");
 const mongoose = require("mongoose");
 const jwtTool = require("../tools/jwt.tool");
 const bcrypt = require("bcrypt");
@@ -23,17 +22,17 @@ async function registrationController(req, res) {
     const salt = await bcrypt.genSalt();
 
     // this gets the current password in db and hash it
-    const pwdHashed = await bcrypt.hash(password, salt);
-    const passwordHshd = await Members.create({ username, email, password: pwdHashed });
+    const hash = await bcrypt.hash(password, salt);
+    // const passwordHshd = await Members.create({ username, email, password: hash });
 
     const data = { username, email };
 
     // generates the token
     const token = jwtTool.generate(data);
 
-    // const newMember = new Members({ username, email, password: passwordHshd, authToken: token });
-    // await newMember.save();
-    res.status(201).json({ message: "Account created successfully !", token });
+    const newUser = await Members.create({ username, email, password: hash, authToken: token });
+
+    res.status(201).json({ message: "Account has been created successfully !", token });
   }
 
   catch (error) {
@@ -47,19 +46,19 @@ async function loginController(req, res) {
   try {
     const { username, password } = req.body;
 
-    // try to find the username & pwd if they exists
+    // try to find the username & pwd if they exist
     const memberCreds = await Members.findOne({ username });
 
-    // compare if the username & pwd stocked in the db is the same as the one that the user is entering
+    // compare if the username & pwd stocked in the db are the same as the ones that the user is entering
     if (!memberCreds) {
       return res.status(400).json({ error: "There's no account with this username. Please create an account." });
     }
-
+    // using bcrypt.compare to compare the pwd in db and the one in input
     const isPwdValid = await bcrypt.compare(password, memberCreds.password);
 
+    // if pwd is valid then operation is a success
     if (isPwdValid) {
       return res.status(200).json({ success: "Credentials valid. Access authorized.", username: memberCreds.username });
-
     }
 
     else {
