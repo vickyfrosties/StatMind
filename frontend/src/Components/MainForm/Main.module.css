@@ -43,6 +43,48 @@ body {
                 border-radius: 5px;
                 background-color: #EDF2F4;
                 font-size: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                svg {
+                    margin: 5px;
+                }
+
+                .cls_1 {
+                    fill: #078CB3;
+                    stroke-width: 0px;
+                }
+
+                .cls_11 {
+                    fill: #000;
+                }
+
+                .cls_11,
+                .cls_2 {
+                    stroke-width: 0px;
+                }
+
+                .cls_3 {
+                    stroke-width: .5px;
+                }
+
+                .cls_3,
+                .cls_2 {
+                    fill: #fff;
+                }
+
+                .cls_3,
+                .cls_4 {
+                    stroke: #000;
+                    stroke-miterlimit: 10;
+                }
+
+                .cls_4 {
+                    fill: none;
+                    stroke-linecap: round;
+                    stroke-width: .75px;
+                }
             }
         }
 

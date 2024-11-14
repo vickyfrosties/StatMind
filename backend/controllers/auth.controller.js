@@ -42,6 +42,8 @@ async function registrationController(req, res) {
   }
 }
 
+// ! issue when sign in, the username don't appear on the home page at "hi {username} & profile page"
+
 async function loginController(req, res) {
 
   try {

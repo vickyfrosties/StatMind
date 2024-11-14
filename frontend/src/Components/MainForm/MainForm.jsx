@@ -30,9 +30,16 @@ const MainForm = () => {
             Disgust
           </button>
 
-          <button value={"Surprised"} onClick={handleClick}>Surprised</button>
+          <button value={"Surprised"} onClick={handleClick}>
+            <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.75 22.75" width="32" height="32">
+              <defs>
+              </defs>
+              <g id="Layer_1-2" data-name="Layer 1">
+                <path className={styles.cls_1} d="M11.38,0C5.09,0,0,5.09,0,11.38s5.09,11.38,11.38,11.38,11.38-5.09,11.38-11.38C22.74,5.1,17.65,0,11.38,0ZM11.38,21c-5.32,0-9.62-4.31-9.62-9.62S6.06,1.75,11.38,1.75s9.62,4.31,9.62,9.62c0,5.31-4.31,9.62-9.62,9.62ZM6.12,9.19c0-.72.59-1.31,1.31-1.31s1.31.59,1.31,1.31-.59,1.31-1.31,1.31-1.31-.59-1.31-1.31ZM16.62,9.19c0,.72-.59,1.31-1.31,1.31s-1.31-.59-1.31-1.31.59-1.31,1.31-1.31,1.31.59,1.31,1.31ZM13.37,14.38c0,1.1-.9,2-2,2s-2-.9-2-2,.9-2,2-2,2,.9,2,2Z" />
+              </g>
+            </svg>Surprised</button>
 
-          <button value={"Overwhelmed"} onClick={handleClick}><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#000000" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm61.66-93.66a8,8,0,0,1-11.32,11.32L168,123.31l-10.34,10.35a8,8,0,0,1-11.32-11.32L156.69,112l-10.35-10.34a8,8,0,0,1,11.32-11.32L168,100.69l10.34-10.35a8,8,0,0,1,11.32,11.32L179.31,112Zm-80-20.68L99.31,112l10.35,10.34a8,8,0,0,1-11.32,11.32L88,123.31,77.66,133.66a8,8,0,0,1-11.32-11.32L76.69,112,66.34,101.66A8,8,0,0,1,77.66,90.34L88,100.69,98.34,90.34a8,8,0,0,1,11.32,11.32ZM140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180Z"></path></svg>
+          <button value={"Overwhelmed"} onClick={handleClick}><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#000000" viewBox="0 0 256 256"><path d="M176,140a12,12,0,1,1-12-12A12,12,0,0,1,176,140ZM128,92a12,12,0,1,0-12,12A12,12,0,0,0,128,92Zm73-38A104,104,0,0,0,50.48,197.33,8,8,0,1,0,62.4,186.66a88,88,0,1,1,131.19,0,8,8,0,0,0,11.93,10.67A104,104,0,0,0,201,54ZM152,168H136c-21.74,0-48-17.84-48-40a41.33,41.33,0,0,1,.55-6.68,8,8,0,1,0-15.78-2.64A56.9,56.9,0,0,0,72,128c0,14.88,7.46,29.13,21,40.15C105.4,178.22,121.07,184,136,184h16a8,8,0,0,1,0,16H96a24,24,0,0,0,0,48,8,8,0,0,0,0-16,8,8,0,0,1,0-16h56a24,24,0,0,0,0-48Z"></path></svg>
             Overwhelmed
           </button>
 
@@ -41,17 +48,22 @@ const MainForm = () => {
         <h3>Because of....</h3>
 
         <form className={styles.mood_form} action="">
-          <textarea className={styles.description} name="description" id="description"></textarea>
+
+          <textarea className={styles.description} name="description" id="description">
+          </textarea>
+
           <p>Any music today ?</p>
           <input className={styles.music_input} type="text" />
+
           <p>Any book you read today ?</p>
           <input className={styles.book_input} type="text" />
+
           <p>Today's picture</p>
           <input className={styles.picture_input} type="file" />
 
-
+          <input type="date" />
         </form>
-      </section>
+      </section >
       <MainMenu />
     </>
   );
