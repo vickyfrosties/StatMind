@@ -6,6 +6,9 @@ const authRouter = require("./routes/auth.route");
 // autorize requests between cross-origin
 const cors = require("cors");
 const jwtTool = require("./tools/jwt.tool");
+// handles cookies session
+const session = require('express-session');
+
 app.use(cors({
   origin: "http://localhost:5173",
   credentials: true
@@ -32,6 +35,13 @@ app.use((request, response, next) => {
   next();
 });
 
+app.use(session({
+  secret: process.env.JWT_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  // change to true if HTTPS request
+  cookie: { secure: false }
+}));
 
 // Routes
 app.use(authRouter);

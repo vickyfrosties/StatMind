@@ -2,6 +2,7 @@ const Members = require("../Models/Members");
 const mongoose = require("mongoose");
 const jwtTool = require("../tools/jwt.tool");
 const bcrypt = require("bcrypt");
+const session = require("express-session");
 
 // connection with db
 mongoose.connect("mongodb://127.0.0.1/users");
@@ -72,4 +73,21 @@ async function loginController(req, res) {
   }
 
 }
-module.exports = { registrationController, loginController };
+
+async function logoutController(req, res) {
+  // if (!req.session.user) {
+  //   return res.status(401).json({ message: "You're not logged in." });
+  // }
+
+  // req.session.destroy((error) => {
+  //   if (error) {
+  //     return res.status(500).json({ error: "Error while trying to log out. Please try again." });
+  //   }
+
+  //   res.clearCookie("username");
+  //   return res.status(200).json({ message: "You're logged out successfully!" });
+  // });
+
+}
+
+module.exports = { registrationController, loginController, logoutController };

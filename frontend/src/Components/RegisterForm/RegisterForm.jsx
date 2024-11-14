@@ -13,7 +13,6 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Sending data:", { username, email, password });
 
     await axios.post("http://localhost:8000/register", { username, email, password })
       .then(result => {
