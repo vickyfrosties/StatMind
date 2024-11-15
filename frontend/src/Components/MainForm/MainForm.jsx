@@ -48,20 +48,31 @@ const MainForm = () => {
         <h3>Because of....</h3>
 
         <form className={styles.mood_form} action="">
-
           <textarea className={styles.description} name="description" id="description">
           </textarea>
 
-          <p>Any music today ?</p>
-          <input className={styles.music_input} type="text" />
+          <div className={styles.container_inputs}>
+            <div>
+              <p>Any music today ?</p>
+              <input className={styles.music_input} type="text" />
+            </div>
 
-          <p>Any book you read today ?</p>
-          <input className={styles.book_input} type="text" />
+            <div>
+              <p>Any book you read today ?</p>
+              <input className={styles.book_input} type="text" />
+            </div>
 
-          <p>Today's picture</p>
-          <input className={styles.picture_input} type="file" />
+            <div>
+              <p>Today's picture</p>
+              <input className={styles.picture_input} type="file" />
+            </div>
 
-          <input type="date" />
+            <div>
+              <p>Today's date</p>
+              <input type="date" />
+            </div>
+
+          </div>
         </form>
       </section >
       <MainMenu />

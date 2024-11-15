@@ -89,19 +89,38 @@ body {
         }
 
         .mood_form {
-            width: 90%;
+            width: 100%;
             margin: auto;
+            height: auto;
+            padding: 1rem;
+            font-family: "Overpass", sans-serif;
+            font-weight: 500;
 
             .description {
-                width: 80%;
+                width: 100%;
                 height: 175px;
                 background-color: #EDF2F4;
                 border: #202C31 1px solid;
+                border-radius: 7px;
+                color: #202C31;
+                font-family: "Overpass", sans-serif;
+                font-weight: 500;
+                padding: 1rem;
+            }
 
+            .container_inputs {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                height: 150px;
             }
 
             .music_input,
             .book_input {
+                width: 170px;
+                height: 30px;
+                color: #202C31;
+                padding: 10px;
                 border: #202C31 1px solid;
                 border-radius: 5px;
                 background-color: #EDF2F4;
