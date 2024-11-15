@@ -1,12 +1,36 @@
+import axios from "axios";
 import MainMenu from "../../Containers/Menu/MainMenu";
 import styles from "./Main.module.css";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const MainForm = () => {
+
+  const [description, setDescription] = useState("");
+  const [favoriteMusic, setFavoriteMusic] = useState("");
+  const [favoriteBook, setFavoriteBook] = useState("");
+  const [pictureOfTheDay, setPictureOfTheDay] = useState("");
+  const [timestamp, setTimeStamp] = useState("");
+  const [clicked, setClicked] = useState(false);
+
   const handleClick = (e) => {
     e.preventDefault();
     const value = e.target.value;
     console.log(value);
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    await axios.post("http://localhost:8000/form", { username, timestamp, description, favoriteMusic, favoriteBook, pictureOfTheDay })
+
+      .then(result => {
+        console.log("Request response:", result);
+      })
+      .catch(error => console.log("Error:", error));
+  };
+
+  const username = localStorage.getItem("username");
 
   return (
     <>
@@ -45,34 +69,35 @@ const MainForm = () => {
 
           <button value={"Anxious"} onClick={handleClick}>Anxious</button>
         </div>
-        <h3>Because of....</h3>
+        <h3>Because...</h3>
 
         <form className={styles.mood_form} action="">
-          <textarea className={styles.description} name="description" id="description">
+          <textarea className={styles.description} name="description" id="description" onChange={(e) => setDescription(e.target.value)}>
           </textarea>
 
           <div className={styles.container_inputs}>
             <div>
               <p>Any music today ?</p>
-              <input className={styles.music_input} type="text" />
+              <input className={styles.music_input} type="text" onChange={(e) => setFavoriteMusic(e.target.value)} />
             </div>
 
             <div>
               <p>Any book you read today ?</p>
-              <input className={styles.book_input} type="text" />
+              <input className={styles.book_input} type="text" onChange={(e) => setFavoriteBook(e.target.value)} />
             </div>
 
             <div>
               <p>Today's picture</p>
-              <input className={styles.picture_input} type="file" />
+              <input className={styles.picture_input} type="file" onChange={(e) => setPictureOfTheDay(e.target.value)} />
             </div>
 
             <div>
               <p>Today's date</p>
-              <input type="date" />
+              <input type="date" name="timestamp" onChange={(e) => setTimeStamp(e.target.value)} />
             </div>
-
           </div>
+          <button onClick={handleSubmit}>
+            <Link to="/"><img className={styles.validation_btn} src="/Icons/Valid-BtnDark.png" alt="Validation Button" /> </Link></button>
         </form>
       </section >
       <MainMenu />

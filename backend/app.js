@@ -8,6 +8,7 @@ const cors = require("cors");
 const jwtTool = require("./tools/jwt.tool");
 // handles cookies session
 const session = require('express-session');
+const dailyLogRouter = require('./routes/dailyLog.route');
 
 app.use(cors({
   origin: "http://localhost:5173",
@@ -39,12 +40,13 @@ app.use(session({
   secret: process.env.JWT_SECRET,
   resave: false,
   saveUninitialized: true,
-  // change to true if HTTPS request
+  // change to true if HTTPS request. Here HTTP ONLY
   cookie: { secure: false }
 }));
 
 // Routes
 app.use(authRouter);
+app.use(dailyLogRouter);
 
 app.listen(8000, () => {
   console.log("Server is running");
