@@ -35,7 +35,7 @@ body {
             justify-content: center;
             align-items: center;
 
-            button {
+            .button_unclicked {
                 color: #202C31;
                 width: 160px;
                 height: 45px;
@@ -88,31 +88,94 @@ body {
             }
 
             .happy_clicked {
+                width: 160px;
+                height: 45px;
+                border-radius: 5px;
+                background-color: #EDF2F4;
                 border: 2px solid yellow;
+                font-size: 15px;
+                color: yellow;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .sad_clicked {
                 border: 2px solid rgb(1, 49, 184);
+                width: 160px;
+                height: 45px;
+                border-radius: 5px;
+                background-color: #EDF2F4;
+                font-size: 15px;
+                color: rgb(1, 49, 184);
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .angry_clicked {
+                width: 160px;
+                height: 45px;
+                border-radius: 5px;
+                background-color: #EDF2F4;
                 border: 2px solid rgb(255, 8, 0);
+                font-size: 15px;
+                color: rgb(166, 10, 5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .disgust_clicked {
+                width: 160px;
+                height: 45px;
+                border-radius: 5px;
+                background-color: #EDF2F4;
                 border: 2px solid rgb(4, 145, 46);
+                font-size: 15px;
+                color: rgb(4, 145, 46);
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .surprised_clicked {
+                width: 160px;
+                height: 45px;
+                border-radius: 5px;
+                background-color: #EDF2F4;
                 border: 2px solid rgb(5, 213, 250);
+                font-size: 15px;
+                color: rgb(5, 213, 250);
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .overwhelmed_clicked {
+                width: 160px;
+                height: 45px;
+                border-radius: 5px;
+                background-color: #EDF2F4;
                 border: 2px solid rgb(10, 10, 10);
+                font-size: 15px;
+                color: rgb(10, 10, 10);
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .anxious_clicked {
+                width: 160px;
+                height: 45px;
+                border-radius: 5px;
+                background-color: #EDF2F4;
                 border: 2px solid rgb(133, 78, 8);
+                font-size: 15px;
+                color: rgb(133, 78, 8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
 
@@ -162,6 +225,4 @@ body {
             }
         }
     }
-
-
 }
