@@ -1,13 +1,13 @@
 const dotenv = require('dotenv').config();
 const express = require("express");
 const app = express();
-const authRouter = require("./routes/auth.route");
 
 // autorize requests between cross-origin
 const cors = require("cors");
 const jwtTool = require("./tools/jwt.tool");
 // handles cookies session
 const session = require('express-session');
+const authRouter = require("./routes/auth.route");
 const dailyLogRouter = require('./routes/dailyLog.route');
 
 app.use(cors({

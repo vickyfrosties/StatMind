@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const jwtTool = require("../tools/jwt.tool");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
+const EmotionsData = require("../Models/EmotionsData");
 
 // connection with db
 mongoose.connect("mongodb://127.0.0.1/users");
@@ -41,8 +42,6 @@ async function registrationController(req, res) {
     res.status(500).send("Error registering new member");
   }
 }
-
-// ! issue when sign in, the username don't appear on the home page at "hi {username} & profile page"
 
 async function loginController(req, res) {
 
@@ -92,4 +91,20 @@ async function logoutController(req, res) {
 
 }
 
-module.exports = { registrationController, loginController, logoutController };
+async function getHistoryData(req, res) {
+  try {
+    // find the data in the collection
+    const data = await EmotionsData.find()
+      // sort it as the greatest 
+      .sort({ createdAt: -1 })
+      // limit to 50 data
+      .limit(50);
+    res.json(data);
+  }
+  catch (error) {
+    console.error('Error fetching data from emotiondatas:', error);
+    res.status(500).json({ message: 'Failed to fetch data.' });
+  }
+}
+
+module.exports = { registrationController, loginController, logoutController, getHistoryData };

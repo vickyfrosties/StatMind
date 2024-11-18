@@ -8,11 +8,10 @@ async function newEntryController(req, res) {
 
     try {
         // getting all the data values
-        const { username, timestamp, emotions, description, favoriteMusic, favoriteBook, pictureOfTheDay } = req.body;
+        const { username, emotions, description, favoriteMusic, favoriteBook, pictureOfTheDay } = req.body;
 
         const entry = await EmotionsData({
             username,
-            timestamp,
             emotions,
             description,
             favoriteMusic,

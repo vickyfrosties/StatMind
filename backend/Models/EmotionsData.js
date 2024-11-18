@@ -13,6 +13,7 @@ const emotionsSchema = new mongoose.Schema(
         favoriteMusic: { type: String, maxlength: 500, required: [true, "Please enter a song for today's mood."] },
         favoriteBook: { type: String, maxlength: 500, required: [true, "Please enter a book for today's mood."] },
         pictureOfTheDay: { type: String, maxlength: 500, required: [true, "Please link a picture for today's mood."] },
+        createdAt: { type: Date, default: Date.now }
     },
     // here the timestamps work automatically if there's no timestamp on client side then it will set it automatically
     { timestamps: true }

@@ -17,7 +17,7 @@ body {
         /* min-height: 80vh; */
         display: flex;
         flex-direction: column;
-        /* justify-content: space-around; */
+        justify-content: space-between;
 
         .title {
             font-family: "Khand", sans-serif;
@@ -46,6 +46,37 @@ body {
 
     .snd_section {
         width: 100%;
+        height: 80%;
         border: 1px solid blue;
+        display: flex;
+
+        .date {
+            border: 2px solid magenta;
+            width: 75px;
+            height: 65px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+
+            h3 {
+                padding: 0;
+            }
+        }
+
+        .history {
+            border: 2px solid rgb(21, 255, 0);
+            width: 100%;
+            height: 65px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            h3 {
+                padding: 0;
+            }
+        }
     }
 }

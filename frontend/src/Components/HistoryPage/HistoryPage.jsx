@@ -1,11 +1,21 @@
 import MainMenu from "../../Containers/Menu/MainMenu";
 import "/fonts.modules.css";
 import styles from "./History.module.css";
+import axios from "axios";
 
 const HistoryPage = () => {
-  const handleClick = (e) => {
+
+  const handleClick = async (e) => {
+    e.preventDefault();
     const value = e.target.value;
     console.log(value);
+
+    await axios.get("http://localhost:8000/history")
+      .then(result => {
+        return console.log(result);
+      })
+      .catch(error => console.log("Error:", error));
+
   };
 
   return (
@@ -19,8 +29,12 @@ const HistoryPage = () => {
         </div>
 
         <section className={styles.snd_section}>
-          <div>
-            dqsdqsd
+          <div className={styles.date}>
+          </div>
+          <div className={styles.history}>
+            <h3>
+              I felt blablablablu
+            </h3>
           </div>
         </section>
 
