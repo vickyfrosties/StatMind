@@ -24,14 +24,25 @@ const MainForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await axios.post("http://localhost:8000/form", { username, description, favoriteMusic, favoriteBook, pictureOfTheDay, emotions: [emotions] })
-
-      .then(result => {
-        console.log("Request response:", result);
-      })
-      .catch(error => console.log("Error:", error));
+    // verify is inputs are empty
+    if (!username || !description || !favoriteMusic || !favoriteBook || !pictureOfTheDay || emotions.length === 0) {
+      console.error("All fields are required!");
+      return;
+    }
+    try {
+      const result = await axios.post("http://localhost:8000/form", {
+        username,
+        description,
+        favoriteMusic,
+        favoriteBook,
+        pictureOfTheDay,
+        emotions: [emotions],
+      });
+      console.log("Request response:", result);
+    } catch (error) {
+      console.error("Error:", error.response?.data || error.message);
+    }
   };
-
   const username = localStorage.getItem("username");
 
   return (
