@@ -29,4 +29,19 @@ async function newEntryController(req, res) {
     }
 }
 
-module.exports = { newEntryController };
+async function historyController(req, res) {
+    try {
+        const { username } = req.body;
+        const existingMember = await EmotionsData.find({ username }).sort({ createAt: -1 });
+        if (existingMember) {
+
+            res.status(200).json();
+        }
+    }
+    catch (error) {
+        console.error("Error fetching history data", error);
+        res.status(500).json({ error: "Failed to fetch user history" });
+    }
+}
+
+module.exports = { newEntryController, historyController };

@@ -39,6 +39,7 @@ const MainForm = () => {
         emotions: [emotions],
       });
       console.log("Request response:", result);
+      alert("Form submitted successfully");
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
     }
