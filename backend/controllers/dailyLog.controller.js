@@ -32,9 +32,8 @@ async function newEntryController(req, res) {
 async function historyController(req, res) {
     try {
         const { username } = req.body;
-        const existingMember = await EmotionsData.find({ username }).sort({ createAt: -1 });
+        const existingMember = await EmotionsData.findOne({ username }).sort({ createAt: -1 });
         if (existingMember) {
-
             res.status(200).json();
         }
     }

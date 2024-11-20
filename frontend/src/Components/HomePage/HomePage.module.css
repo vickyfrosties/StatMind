@@ -14,6 +14,11 @@ body {
   color: var(--color);
 }
 
+.calendar_container {
+  border: 2px solid #EDF2F4;
+  /* width: 100%; */
+}
+
 .main_container {
   padding: 2rem;
   width: 80%;

@@ -5,14 +5,27 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const HistoryPage = () => {
-  // const [data, setData] = useState();
   const [history, setHistory] = useState([]);
   const username = localStorage.getItem("username");
+  // to filter the data whether it is by day, week or month
+  const [filteredData, setFilteredData] = useState([]);
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const value = e.target.value;
-    console.log(value);
+    const filter = e.target.value;
+    console.log(filter);
+    // TODO: filter the data entries
+    if (filter === "DAY") {
+
+    }
+    else if (filter === "WEEK") {
+
+    }
+    else if (filter === "MONTH") {
+
+    }
+    else (console.log("Did not filter the data well")
+    );
   };
 
   useEffect((username) => {
@@ -22,7 +35,8 @@ const HistoryPage = () => {
         const response = await axios.get("http://localhost:8000/history");
         // set the history with the current data stored in the database 
         setHistory(response.data);
-      } catch (error) {
+      }
+      catch (error) {
         console.log("Error fetching data history", error);
       }
     };
