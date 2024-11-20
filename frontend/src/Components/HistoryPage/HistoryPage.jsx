@@ -20,7 +20,7 @@ const HistoryPage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:8000/history");
-        // set the history
+        // set the history with the current data stored in the database 
         setHistory(response.data);
       } catch (error) {
         console.log("Error fetching data history", error);
@@ -40,19 +40,26 @@ const HistoryPage = () => {
         </div>
 
         <section className={styles.snd_section}>
-          <div>
+          <div className={styles.history_container}>
             {history.length === 0 ? (
               <p>No history found.</p>
             ) : (
               <ul>
                 {history.map((entry, index) => (
                   <li key={entry._id}>
-                    <p><strong>Date:</strong> {new Date(entry.createdAt).toLocaleString()}</p>
-                    <p><strong>Description:</strong> {entry.description}</p>
-                    <p><strong>Favorite Music:</strong> {entry.favoriteMusic}</p>
-                    <p><strong>Favorite Book:</strong> {entry.favoriteBook}</p>
-                    <p><strong>Picture of the Day:</strong> {entry.pictureOfTheDay}</p>
-                    <p><strong>Emotions:</strong> {entry.emotions.join(', ')}</p>
+                    <div className={styles.date_light}>
+                      <p>{new Date(entry.createdAt).toString().slice(0, 3).toUpperCase()}</p>
+                      <p>{new Date(entry.createdAt).toLocaleDateString("fr-FR")}</p>
+                      <p>at {new Date(entry.createdAt).toLocaleTimeString("fr-FR")}</p>
+                    </div>
+                    <div className={styles.history_info_light}>
+                      <p className={styles.history}>{entry.emotions}</p>
+                      <p className={styles.history}>{entry.description}</p>
+                      <p className={styles.history}>{entry.favoriteMusic}</p>
+                      <p className={styles.history}>{entry.favoriteBook}</p>
+                      <p className={styles.history}>{entry.pictureOfTheDay}</p>
+                      <p className={styles.history}>{entry.emotions.join(', ')}</p>
+                    </div>
                   </li>
                 ))}
               </ul>

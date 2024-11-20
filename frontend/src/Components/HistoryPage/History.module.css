@@ -46,37 +46,77 @@ body {
 
     .snd_section {
         width: 100%;
-        height: 80%;
-        border: 1px solid blue;
+        height: auto;
         display: flex;
 
-        .date {
-            border: 2px solid magenta;
-            width: 75px;
-            height: 65px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
+        .history_container {
+            margin-top: 1rem;
 
-            h3 {
-                padding: 0;
+            ul {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: auto;
+            }
+
+            li {
+                height: 100px;
+
+                display: flex;
+                font-family: "Overpass", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 600;
+                font-style: normal;
+                font-size: 14px;
             }
         }
 
-        .history {
-            border: 2px solid rgb(21, 255, 0);
+        .date_light {
+            border: 1px solid #202C31;
+            border-radius: 10px;
+            padding: 10px;
+            width: 30%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            p:first-child {
+                font-family: "Overpass", sans-serif;
+                font-weight: 900;
+                font-size: 18px;
+            }
+        }
+
+        .date_dark {
+            background-color: #202C31;
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .history_info_light {
+            padding: 10px;
+            border: 1px solid #202C31;
+            border-radius: 10px;
             width: 100%;
-            height: 65px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            font-size: 12px;
 
-            h3 {
-                padding: 0;
-            }
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
         }
+
+        .history_info_dark {
+            padding: 10px;
+            background-color: #202C31;
+            border-radius: 10px;
+            color: #EDF2F4;
+            width: 100%;
+        }
+
     }
 }
