@@ -4,6 +4,6 @@ const { newEntryController, historyController } = require("../controllers/dailyL
 const dailyLogRouter = express.Router();
 
 dailyLogRouter.post("/form", newEntryController);
-dailyLogRouter.get("/history/:username", historyController);
+dailyLogRouter.get("/history", historyController);
 
 module.exports = dailyLogRouter;

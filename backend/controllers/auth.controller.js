@@ -98,7 +98,7 @@ async function getHistoryData(req, res) {
       // sort it as the greatest 
       .sort({ createdAt: -1 })
       // limit to 50 data
-      .limit(50);
+      .limit(20);
     res.json(data);
   }
   catch (error) {
