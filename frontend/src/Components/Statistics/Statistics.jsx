@@ -20,13 +20,20 @@ const Statistics = () => {
     console.log(value);
   };
 
+  // get data to use it as statistics 
   useEffect((username) => {
-    // get data to use it as statistics 
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:8000/statistics");
-        setStatistics(response.data);
-        console.log(setStatistics);
+        console.log("API response:", response);
+        const formattedData = statistics.map(stats => ({
+          x: stats.createdAt,
+          y: stats.emotion,
+          label: stats.username
+        }));
+        console.log("Data formatted:", formattedData);
+        setStatistics(formattedData);
+
       }
       catch (error) {
         console.log("Error with statistics data", error);
@@ -34,19 +41,6 @@ const Statistics = () => {
     };
     fetchData();
   }, [username]);
-
-  // const series = [
-  //   {
-  //     name: "Belgium",
-  //     data: [
-  //       3.9670002, 5.2650003, 6.201,
-  //       7.8010006, 9.694, 11.214001,
-  //       11.973001, 12.250001, 12.816001,
-  //       13.413001, 13.626961, 14.30356,
-  //       15.295461,
-  //     ],
-  //   },
-  // ];
 
   return (
     <>
@@ -60,52 +54,9 @@ const Statistics = () => {
         </div>
 
         <section className={styles.stats_container}>
-          <VictoryChart>
-            <VictoryScatter size={9} data={[
-              {
-                x: 1,
-                y: 1,
-                label: "first",
-                symbol: "star",
-                opacity: 0.5,
-                fill: "blue",
-              },
-              {
-                x: 2,
-                y: 2,
-                label: "second",
-                symbol: "circle",
-                opacity: 0.8,
-                fill: "red",
-              },
-              {
-                x: 3,
-                y: 3,
-                label: "third",
-                symbol: "square",
-                fill: "gold",
-              },
-              {
-                x: 4,
-                y: 4,
-                label: "fourth",
-                symbol: "diamond",
-                fill: "green",
-              },
-            ]} />
-            {/* {statistics.length === 0 ? (<p>No statistics found</p>) : (
-              statistics.map((data, index) => (
-                <VictoryScatter data={statistics[0].emotions.map(
-                  (data, index) => ({
-                    x: index,
-                    y: data
-                  })
-                )}
-                  style={{ data: { fill: 'green' } }} />
-
-              ))
-            )} */}
-
+          <VictoryChart domainPadding={{ x: 20 }}
+            theme={VictoryTheme.clean}>
+            <VictoryBar data={statistics} />
           </VictoryChart>
         </section>
       </section>
