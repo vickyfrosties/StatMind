@@ -3,10 +3,6 @@ import MainMenu from "../../Containers/Menu/MainMenu";
 import styles from "./Profile.module.css";
 import "/fonts.modules.css";
 import axios from "axios";
-import { useColorScheme } from "@mui/material";
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Radio from '@mui/material/Radio';
 
 const Profile = () => {
   const navigate = useNavigate();

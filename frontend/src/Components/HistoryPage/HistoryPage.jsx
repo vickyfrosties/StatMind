@@ -29,7 +29,6 @@ const HistoryPage = () => {
   };
 
   useEffect((username) => {
-
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:8000/history");
@@ -72,7 +71,7 @@ const HistoryPage = () => {
                       <p className={styles.history}>{entry.favoriteMusic}</p>
                       <p className={styles.history}>{entry.favoriteBook}</p>
                       <p className={styles.history}>{entry.pictureOfTheDay}</p>
-                      <p className={styles.history}>{entry.emotions.join(', ')}</p>
+                      <p className={styles.history}>{entry.emotions}</p>
                     </div>
                   </li>
                 ))}

@@ -43,4 +43,19 @@ async function historyController(req, res) {
     }
 }
 
-module.exports = { newEntryController, historyController };
+async function statisticsController(req, res) {
+    try {
+        const { username, emotions, createdAt } = req.body;
+        const statistics = await EmotionsData.findOne({ username, emotions, createdAt });
+        if (statistics) {
+
+            return res.status(201).json("Statistics data are well received!");
+        }
+    }
+    catch (error) {
+        console.error("Error fetching statistics", error);
+        res.status(500).json({ error: "Failed to fetch user data statistics" });
+    }
+}
+
+module.exports = { newEntryController, historyController, statisticsController };
