@@ -43,14 +43,13 @@ async function historyController(req, res) {
     }
 }
 
-// const statistics = await EmotionsData.find({}, { username: 1, emotions: 1, createdAt: 1 });
 async function statisticsController(req, res) {
     try {
         const { username, emotions, createdAt } = req.query;
-        const statistics = await EmotionsData.find({ username: username, emotions: emotions, createdAt: createdAt }).select('username emotions createdAt');
+        const statistics = await EmotionsData.find({}, "username emotions createdAt");
         if (statistics.length === 0) { console.log("No data found for the given parameters."); }
         console.log(statistics);
-        res.status(201).json({ message: "Statistics data are well received!", statistics });
+        res.status(201).json(statistics);
     }
     catch (error) {
         console.error("Error fetching statistics", error);
