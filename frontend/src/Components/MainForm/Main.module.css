@@ -170,9 +170,9 @@ body {
                 height: 45px;
                 border-radius: 5px;
                 background-color: #EDF2F4;
-                border: 2px solid rgb(133, 78, 8);
+                border: 2px solid #E4572E;
                 font-size: 15px;
-                color: rgb(133, 78, 8);
+                color: #E4572E;
                 display: flex;
                 justify-content: center;
                 align-items: center;

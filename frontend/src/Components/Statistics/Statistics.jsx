@@ -2,25 +2,37 @@ import MainMenu from "../../Containers/Menu/MainMenu";
 import "/fonts.modules.css";
 import styles from "./Statistics.module.css";
 import {
-  VictoryBar,
   VictoryChart,
-  VictoryLine,
   VictoryTheme, VictoryAxis,
-  VictoryScatter
+  VictoryScatter,
+  VictoryLegend
 } from "victory";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Statistics = () => {
-  const [stats, setStats] = useState([]);
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
+  const [chartData, setChartData] = useState([]);
 
   const handleClick = (e) => {
     const value = e.target.value;
     console.log(value);
+  };
+
+  // Y axis
+  const emotionScale = {
+    'Very Negative': 1,
+    "Negative": 2,
+    "Positive": 3,
+    'Very Positive': 4,
+  };
+
+  // X axis
+  const timeScale = {
+    '6AM': 1,
+    "12PM": 2,
+    "4PM": 3,
+    '8PM': 4,
   };
 
   // get data to use it as statistics 
@@ -28,18 +40,23 @@ const Statistics = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:8000/statistics");
-        console.log('Fetched data:', response.data);
-        setStats(response.data);
-        if (Array.isArray(response.data)) {
-          setStats(response.data);
-        } else {
-          console.error("Expected an array but got:", response.data);
-          setError("Invalid data format from server.");
-        }
+
+        // formating the response data as right values to display them easily
+        const formattedData = response.data.map((item) => {
+          const date = new Date(item.createdAt);
+          const timeKey = formatTime(date);
+
+          return {
+            x: timeScale[timeKey] || 0,
+            y: emotionScale[mapEmotionToCategory(item.emotions[0])] || 0,
+            color: emotionColors[item.emotions[0]] || gray
+          };
+        });
+        setChartData(formattedData);
+        console.log(formattedData);
       }
+
       catch (error) {
-        // console.log("Error with statistics data", error);
-        setError('Error fetching data: ' + error.message);
         console.error('Error fetching data:', error);
       }
       finally {
@@ -49,6 +66,38 @@ const Statistics = () => {
     fetchData();
   }, []);
 
+  // format the date
+  const formatTime = (date) => {
+    const hours = date.getHours();
+    if (hours >= 6 && hours < 12) return '6AM';
+    if (hours >= 12 && hours < 16) return '12PM';
+    if (hours >= 16 && hours < 20) return '4PM';
+    if (hours >= 20 || hours < 6) return '8PM';
+    return 'Unknown';
+  };
+
+  const mapEmotionToCategory = (emotion) => {
+    const emotionMapping = {
+      Happy: 'Very Positive',
+      Excited: 'Very Positive',
+      Sad: 'Negative',
+      Angry: 'Very Negative',
+      Overwhelmed: 'Negative',
+      Surprised: 'Negative',
+      Disgust: 'Negative',
+    };
+    return emotionMapping[emotion] || 'Unknown';
+  };
+
+  const emotionColors = {
+    Happy: "#FDD012",
+    Sad: "#0C5BC1",
+    Angry: "#AC0808",
+    Disgust: "#266813",
+    Overwhelmed: "0B1414",
+    Surprised: "#078CB3",
+    Anxious: "#E4572E",
+  };
 
   return (
     <>
@@ -62,45 +111,64 @@ const Statistics = () => {
         </div>
 
         <section className={styles.stats_container}>
-          <VictoryChart theme={VictoryTheme.clean}>
-            {/* x axis */}
-            <VictoryAxis
-              label="Day's week"
-              tickValues={days}
-              tickFormat={days}
-            />
+          <VictoryChart
+            domain={{ x: [0, 4] }}
+            width={450} height={375}
+            theme={VictoryTheme.material}>
 
-            {/* y axis */}
             <VictoryAxis
-              label="Time of the day"
+              // values for times
+              tickValues={Object.values(timeScale)}
+              // labels for times
+              tickFormat={Object.keys(timeScale)}
+            />
+            <VictoryAxis
               dependentAxis
-              tickValues={[0, 6, 12, 18, 24]}
-              tickFormat={(t) => `${t}:00`}
-            />
-            <VictoryScatter x="day" y="time" size={7} data={ } />
-          </VictoryChart>
+              tickValues={Object.values(emotionScale)}
+              tickFormat={Object.keys(emotionScale)} />
 
+            <VictoryScatter
+              data={chartData}
+              size={7}
+              style={{ data: { fill: ({ datum }) => datum.color } }}
+            />
+          </VictoryChart>
           <div>
-            {loading ? (
-              <p>Loading data...</p>
-            ) : error ? (
-              <p>{error}</p>
-            ) : stats.length === 0 ? (
-              <p>No data found.</p>
-            ) : (
-              <ul>
-                {stats.map((entry) => (
-                  <li key={entry._id}>
-                    <p><strong>Username:</strong> {entry.username}</p>
-                    <p><strong>Emotions:</strong> {entry.emotions.join(", ")}</p>
-                    <p><strong>Created At:</strong> {new Date(entry.createdAt).toLocaleDateString()}</p>
-                  </li>
-                ))}
-              </ul>
-            )}
+            <VictoryLegend
+              x={15} y={10} itemsPerRow={2}
+              data={[
+                {
+                  name: "Happy",
+                  symbol: { fill: "#FDD012" },
+                },
+                {
+                  name: "Sad",
+                  symbol: { fill: "#0C5BC1" },
+                },
+                {
+                  name: "Angry",
+                  symbol: { fill: "#AC0808" },
+                },
+                {
+                  name: "Disgust",
+                  symbol: { fill: "#266813" },
+                },
+                {
+                  name: "Overwhelmed",
+                  symbol: { fill: "0B1414" },
+                },
+                {
+                  name: "Surprised",
+                  symbol: { fill: "#078CB3" },
+                },
+                {
+                  name: "Anxious",
+                  symbol: { fill: "#E4572E" },
+                },
+              ]}
+            />
           </div>
         </section>
-
       </section>
       <MainMenu />
     </>
