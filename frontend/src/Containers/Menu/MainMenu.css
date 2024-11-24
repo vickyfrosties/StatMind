@@ -1,6 +1,6 @@
 :root {
-    background-color: #202c31;
-    background-color: #EDF2F4;
+    --backcolor: #202c31;
+    --frontcolor: #EDF2F4;
 }
 
 * {
@@ -9,7 +9,40 @@
     box-sizing: border-box;
 }
 
-@media (min-width : 390px) and (max-width: 550px) {
+.container {
+    background-color: var(--backcolor);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 120px;
+    height: 375px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: calc(100vh - 65%);
+
+    .links {
+        /* border: 2px solid magenta; */
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            /* border: 2px solid firebrick; */
+            width: 50px;
+            height: 50px;
+        }
+
+    }
+
+    .add_btn_link {
+        display: none;
+    }
+}
+
+@media (390px <=width <=550px) {
     * {
         padding: 0;
         margin: 0;

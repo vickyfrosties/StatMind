@@ -3,6 +3,9 @@ import MainMenu from "../../Containers/Menu/MainMenu";
 import styles from "./Profile.module.css";
 import "/fonts.modules.css";
 import axios from "axios";
+import Header from "../../Containers/Header/Header";
+import MediaQuery from "react-responsive";
+
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -28,7 +31,9 @@ const Profile = () => {
 
   return (
     <>
-
+      <MediaQuery minWidth={550}>
+        <Header />
+      </MediaQuery>
       <section className={styles.first_section}>
         <div className={styles.infos}>
           <div className={styles.first_block}>

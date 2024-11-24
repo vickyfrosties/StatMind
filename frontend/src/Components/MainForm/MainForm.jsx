@@ -3,6 +3,8 @@ import MainMenu from "../../Containers/Menu/MainMenu";
 import styles from "./Main.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import MediaQuery from "react-responsive";
+import Header from "../../Containers/Header/Header";
 
 const MainForm = () => {
 
@@ -48,6 +50,9 @@ const MainForm = () => {
 
   return (
     <>
+      <MediaQuery minWidth={550}>
+        <Header />
+      </MediaQuery>
       <section className={styles.first_section}>
         <h3>I feel...</h3>
         <div className={styles.btn_container}>

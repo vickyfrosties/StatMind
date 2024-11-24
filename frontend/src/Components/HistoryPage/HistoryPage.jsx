@@ -3,6 +3,9 @@ import "/fonts.modules.css";
 import styles from "./History.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Header from "../../Containers/Header/Header";
+import MediaQuery from "react-responsive";
+
 
 const HistoryPage = () => {
   const [history, setHistory] = useState([]);
@@ -44,6 +47,9 @@ const HistoryPage = () => {
 
   return (
     <>
+      <MediaQuery minWidth={550}>
+        <Header />
+      </MediaQuery>
       <section className={styles.main_section}>
         <h2 className={styles.title}>{username}'s History</h2>
         <div className={styles.buttons_container}>

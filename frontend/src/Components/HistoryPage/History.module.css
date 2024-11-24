@@ -4,9 +4,15 @@
     box-sizing: border-box;
 }
 
+:root {
+    --backcolor: #202c31;
+    --frontcolor: #EDF2F4;
+}
+
 body {
     width: 100%;
     min-height: 100vh;
+    background-color: var(--frontcolor);
 }
 
 @media (min-width: 390px) and (max-width: 550px) {
