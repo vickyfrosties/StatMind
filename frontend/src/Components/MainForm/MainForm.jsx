@@ -76,19 +76,16 @@ const MainForm = () => {
           </button>
 
           <button className={isClicked ? styles.surprised_clicked : styles.button_unclicked} value={"Surprised"} onClick={handleClick}>
-            <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.75 22.75" width="32" height="32">
-              <defs>
-              </defs>
-              <g id="Layer_1-2" data-name="Layer 1">
-                <path className={styles.cls_1} d="M11.38,0C5.09,0,0,5.09,0,11.38s5.09,11.38,11.38,11.38,11.38-5.09,11.38-11.38C22.74,5.1,17.65,0,11.38,0ZM11.38,21c-5.32,0-9.62-4.31-9.62-9.62S6.06,1.75,11.38,1.75s9.62,4.31,9.62,9.62c0,5.31-4.31,9.62-9.62,9.62ZM6.12,9.19c0-.72.59-1.31,1.31-1.31s1.31.59,1.31,1.31-.59,1.31-1.31,1.31-1.31-.59-1.31-1.31ZM16.62,9.19c0,.72-.59,1.31-1.31,1.31s-1.31-.59-1.31-1.31.59-1.31,1.31-1.31,1.31.59,1.31,1.31ZM13.37,14.38c0,1.1-.9,2-2,2s-2-.9-2-2,.9-2,2-2,2,.9,2,2Z" />
-              </g>
-            </svg>Surprised</button>
+            <img className={styles.surprisedIcon} src="/Icons/smiley-surprised.svg" alt="Surprised Smiley Icon" />
+            Surprised</button>
 
-          <button className={isClicked ? styles.overwhelmed_clicked : styles.button_unclicked} value={"Overwhelmed"} onClick={handleClick}><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#000000" viewBox="0 0 256 256"><path d="M176,140a12,12,0,1,1-12-12A12,12,0,0,1,176,140ZM128,92a12,12,0,1,0-12,12A12,12,0,0,0,128,92Zm73-38A104,104,0,0,0,50.48,197.33,8,8,0,1,0,62.4,186.66a88,88,0,1,1,131.19,0,8,8,0,0,0,11.93,10.67A104,104,0,0,0,201,54ZM152,168H136c-21.74,0-48-17.84-48-40a41.33,41.33,0,0,1,.55-6.68,8,8,0,1,0-15.78-2.64A56.9,56.9,0,0,0,72,128c0,14.88,7.46,29.13,21,40.15C105.4,178.22,121.07,184,136,184h16a8,8,0,0,1,0,16H96a24,24,0,0,0,0,48,8,8,0,0,0,0-16,8,8,0,0,1,0-16h56a24,24,0,0,0,0-48Z"></path></svg>
+          <button className={isClicked ? styles.overwhelmed_clicked : styles.button_unclicked} value={"Overwhelmed"} onClick={handleClick}><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#0B1414" viewBox="0 0 256 256"><path d="M176,140a12,12,0,1,1-12-12A12,12,0,0,1,176,140ZM128,92a12,12,0,1,0-12,12A12,12,0,0,0,128,92Zm73-38A104,104,0,0,0,50.48,197.33,8,8,0,1,0,62.4,186.66a88,88,0,1,1,131.19,0,8,8,0,0,0,11.93,10.67A104,104,0,0,0,201,54ZM152,168H136c-21.74,0-48-17.84-48-40a41.33,41.33,0,0,1,.55-6.68,8,8,0,1,0-15.78-2.64A56.9,56.9,0,0,0,72,128c0,14.88,7.46,29.13,21,40.15C105.4,178.22,121.07,184,136,184h16a8,8,0,0,1,0,16H96a24,24,0,0,0,0,48,8,8,0,0,0,0-16,8,8,0,0,1,0-16h56a24,24,0,0,0,0-48Z"></path></svg>
             Overwhelmed
           </button>
 
-          <button className={isClicked ? styles.anxious_clicked : styles.button_unclicked} value={"Anxious"} onClick={handleClick}>Anxious</button>
+          <button className={isClicked ? styles.anxious_clicked : styles.button_unclicked} value={"Anxious"} onClick={handleClick}>
+            <img className={styles.anxiousIcon} src="/Icons/smiley-anxious.svg" alt="Anxious Smiley Icon" />
+            Anxious</button>
         </div>
         <h3>Because...</h3>
 

@@ -10,11 +10,11 @@ const MainMenu = () => {
         <>
             <section className="container">
                 <Link className="links" to="../">
-                    <img src="/Icons/house.svg" alt="Home Icon" />
+                    <img src="/Icons/house.svg" alt="Home Icon Page" />
                 </Link>
 
                 <Link className="links" to="../history">
-                    <img src="/Icons/clock-counter-clockwise.svg" alt="History Icon" />
+                    <img src="/Icons/clock-counter-clockwise.svg" alt="History Icon Page" />
                 </Link>
                 <button>
                     {/* {isFormPage ? <Link to="/"><img className="validation-btn" src="/Icons/Valid-BtnDark.png" alt="Validation Button" /> </Link> : <Link className="add_btn_link" to="../form">
@@ -32,10 +32,11 @@ const MainMenu = () => {
                     </Link>
                 </button>
                 <Link className="links" to="../statistics">
-                    <img src="/Icons/chart-donut.svg" alt="Statistics Icon" />
+                    <img src="./Icons/chart-donut.svg" alt="Statistics Icon Page" />
+                    {/* <img src="/Icons/chart-donut.svg" alt="Statistics Icon" /> */}
                 </Link>
                 <Link className="links" to="../profile">
-                    <img src="/Icons/user.svg" alt="Profile Icon" />
+                    <img src="/Icons/user.svg" alt="Profile Icon Page" />
                 </Link>
             </section>
         </>

@@ -3,7 +3,6 @@ import MainMenu from "../../Containers/Menu/MainMenu";
 import Header from "../../Containers/Header/Header";
 import Footer from "../../Containers/Footer/Footer";
 import MediaQuery from "react-responsive";
-import Calendar from "../Calendar/Calendar";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
@@ -20,10 +19,14 @@ const HomePage = () => {
         <div className={styles.main}>
           <h2>Hi {username}, how do you feel today?</h2>
           <img src="/Logo/Colors-Wheel.png" alt="Color's Wheel" />
-          <button autoFocus >
-            <Link to="/form">
-              New emotion
-            </Link></button>
+
+          <MediaQuery minWidth={550}>
+            <button autoFocus >
+              <Link to="/form">
+                New emotion
+              </Link>
+            </button>
+          </MediaQuery>
         </div>
       </section>
 

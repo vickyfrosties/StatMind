@@ -5,13 +5,23 @@ import "/fonts.modules.css";
 import axios from "axios";
 import Header from "../../Containers/Header/Header";
 import MediaQuery from "react-responsive";
+import { useEffect, useState } from "react";
 
 
 const Profile = () => {
+  const [currentEmotion, setCurrentEmotion] = useState([]);
   const navigate = useNavigate();
-
   const username = localStorage.getItem("username");
 
+  const emotionsIcons = {
+    "Happy": "./public/Icons/smiley.svg",
+    "Sad": "./public/Icons/smiley-sad.svg",
+    "Angry": "./public/Icons/smiley-angry.svg",
+    "Disgust": "./public/Icons/smiley-nervous.svg",
+    "Overwhelmed": "./public/Icons/smiley-melting.svg",
+    "Surprised": "./public/Icons/smiley-surprised.svg",
+    "Anxious": "./public/Icons/smiley-melting.svg",
+  };
 
   // this request notify the server that a user has been logged out
   async function logout() {
@@ -29,6 +39,20 @@ const Profile = () => {
       });
   }
 
+  useEffect(() => {
+    const getLastEmotion = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/profile");
+        setCurrentEmotion(response.data);
+      }
+      catch (error) {
+        console.error("Failed to get last saved emotion", error);
+      }
+    };
+    getLastEmotion();
+  }, []);
+
+
   return (
     <>
       <MediaQuery minWidth={550}>
@@ -42,14 +66,11 @@ const Profile = () => {
             <h2>{username}</h2>
           </div>
 
-          <svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" fill="#FDD012" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216ZM80,108a12,12,0,1,1,12,12A12,12,0,0,1,80,108Zm96,0a12,12,0,1,1-12-12A12,12,0,0,1,176,108Zm-1.07,48c-10.29,17.79-27.4,28-46.93,28s-36.63-10.2-46.92-28a8,8,0,1,1,13.84-8c7.47,12.91,19.21,20,33.08,20s25.61-7.1,33.07-20a8,8,0,0,1,13.86,8Z"></path>
-          </svg>
+          <img className={styles.current_emotion} src={emotionsIcons[currentEmotion.emotions]} alt={currentEmotion.emotions} />
         </div>
 
         <div className={styles.button_container}>
-          <button >
-
-
+          <button>
             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#202C31" viewBox="0 0 256 256"><path d="M233.54,142.23a8,8,0,0,0-8-2,88.08,88.08,0,0,1-109.8-109.8,8,8,0,0,0-10-10,104.84,104.84,0,0,0-52.91,37A104,104,0,0,0,136,224a103.09,103.09,0,0,0,62.52-20.88,104.84,104.84,0,0,0,37-52.91A8,8,0,0,0,233.54,142.23ZM188.9,190.34A88,88,0,0,1,65.66,67.11a89,89,0,0,1,31.4-26A106,106,0,0,0,96,56,104.11,104.11,0,0,0,200,160a106,106,0,0,0,14.92-1.06A89,89,0,0,1,188.9,190.34Z"></path>
             </svg>
             <h2>Dark</h2>
@@ -80,10 +101,10 @@ const Profile = () => {
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-68-56a12,12,0,1,1-12-12A12,12,0,0,1,140,152Z"></path></svg>
             <h3>Privacy</h3>
           </div>
-          {/* <div className={styles.settings}>
+          <div className={styles.settings}>
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M141.66,133.66l-40,40a8,8,0,0,1-11.32-11.32L116.69,136H24a8,8,0,0,1,0-16h92.69L90.34,93.66a8,8,0,0,1,11.32-11.32l40,40A8,8,0,0,1,141.66,133.66ZM200,32H136a8,8,0,0,0,0,16h56V208H136a8,8,0,0,0,0,16h64a8,8,0,0,0,8-8V40A8,8,0,0,0,200,32Z"></path></svg>
             <h3>Log Out</h3>
-          </div> */}
+          </div>
           <button onClick={logout}>
             Logout
           </button>

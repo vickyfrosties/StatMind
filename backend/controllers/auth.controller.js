@@ -76,18 +76,15 @@ async function loginController(req, res) {
 }
 
 async function logoutController(req, res) {
-  // if (!req.session.user) {
-  //   return res.status(401).json({ message: "You're not logged in." });
-  // }
 
-  // req.session.destroy((error) => {
-  //   if (error) {
-  //     return res.status(500).json({ error: "Error while trying to log out. Please try again." });
-  //   }
+  req.session.destroy((error) => {
+    if (error) {
+      return res.status(500).json({ error: "Error while trying to log out. Please try again." });
+    }
 
-  //   res.clearCookie("username");
-  //   return res.status(200).json({ message: "You're logged out successfully!" });
-  // });
+    res.clearCookie("username");
+    return res.status(200).json({ message: "You're logged out successfully!" });
+  });
 
 }
 

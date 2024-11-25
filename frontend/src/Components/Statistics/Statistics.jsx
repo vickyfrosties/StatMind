@@ -94,7 +94,7 @@ const Statistics = () => {
     Sad: "#0C5BC1",
     Angry: "#AC0808",
     Disgust: "#266813",
-    Overwhelmed: "0B1414",
+    Overwhelmed: "#6D6D6D",
     Surprised: "#078CB3",
     Anxious: "#E4572E",
   };
@@ -125,7 +125,8 @@ const Statistics = () => {
             <VictoryAxis
               dependentAxis
               tickValues={Object.values(emotionScale)}
-              tickFormat={Object.keys(emotionScale)} />
+              tickFormat={Object.keys(emotionScale)}
+            />
 
             <VictoryScatter
               data={chartData}
@@ -155,7 +156,7 @@ const Statistics = () => {
                 },
                 {
                   name: "Overwhelmed",
-                  symbol: { fill: "0B1414" },
+                  symbol: { fill: "#6D6D6D" },
                 },
                 {
                   name: "Surprised",

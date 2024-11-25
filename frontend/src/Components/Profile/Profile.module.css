@@ -67,6 +67,11 @@ body {
                 }
             }
         }
+
+        .current_emotion {
+            width: 60px;
+            height: 60px;
+        }
     }
 
     .second_section {

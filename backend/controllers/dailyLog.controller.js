@@ -57,4 +57,20 @@ async function statisticsController(req, res) {
     }
 }
 
-module.exports = { newEntryController, historyController, statisticsController };
+async function lastEmotionController(req, res) {
+    try {
+        const { username, emotions } = req.body;
+        const lastEmotion = await EmotionsData.findOne({}, "emotions").sort({ createdAt: -1 });
+        if (lastEmotion.length === 0) {
+            console.log("Emotion not found");
+        }
+        res.status(201).json(lastEmotion);
+    }
+    catch (error) {
+        console.error("Error with emotion data");
+        res.status(500).json({ error: "Failed to get emotion" });
+    }
+
+}
+
+module.exports = { newEntryController, historyController, statisticsController, lastEmotionController };
