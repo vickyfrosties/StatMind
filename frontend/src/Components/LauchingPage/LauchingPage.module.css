@@ -16,19 +16,14 @@
   }
 
   .first_section {
-    width: 250px;
-    height: 300px;
+    width: 100%;
+    height: 375px;
     margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    line-height: 1.5;
-
-    .logo {
-      width: 100px;
-      margin-bottom: 1rem;
-    }
+    line-height: 1.2;
 
     h3 {
       font-size: 20px;
@@ -36,6 +31,12 @@
       font-weight: 600;
       font-style: normal;
     }
+  }
+
+  .logo {
+    width: 175px;
+    width: 175px;
+    margin-bottom: 1rem;
   }
 
   .buttons_section {

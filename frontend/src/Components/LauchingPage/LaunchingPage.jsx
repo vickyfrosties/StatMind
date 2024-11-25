@@ -5,14 +5,12 @@ const LaunchingPage = () => {
   return (
     <>
       <div className={styles.first_section}>
-        <img className={styles.logo} src="/Logo/StatMind - Logo.png" alt="StatMind Logo" />
-        <h3>StatMind</h3>
-        <h3>Reflect. Track. Grow.</h3>
-      </div>
+        <img className={styles.logo} src="./Logo/LogoWhiteV.png" alt="StatMind Logo" />
 
-      <div className={styles.buttons_section}>
-        <Link className={styles.button} to="/register">Sign In</Link>
-        <Link className={styles.button} to="/login">Login</Link>
+        <div className={styles.buttons_section}>
+          <Link className={styles.button} to="/register">Sign In</Link>
+          <Link className={styles.button} to="/login">Login</Link>
+        </div>
       </div>
 
       <div className={styles.conditions}>

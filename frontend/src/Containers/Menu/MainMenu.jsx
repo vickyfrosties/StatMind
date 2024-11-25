@@ -9,7 +9,7 @@ const MainMenu = () => {
     return (
         <>
             <section className="container">
-                <Link className="links" to="../">
+                <Link className="links" to="../home">
                     <img src="/Icons/house.svg" alt="Home Icon Page" />
                 </Link>
 
@@ -33,7 +33,6 @@ const MainMenu = () => {
                 </button>
                 <Link className="links" to="../statistics">
                     <img src="./Icons/chart-donut.svg" alt="Statistics Icon Page" />
-                    {/* <img src="/Icons/chart-donut.svg" alt="Statistics Icon" /> */}
                 </Link>
                 <Link className="links" to="../profile">
                     <img src="/Icons/user.svg" alt="Profile Icon Page" />

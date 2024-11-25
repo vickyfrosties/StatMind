@@ -32,9 +32,14 @@ const RegisterForm = () => {
         <h2>Sign In</h2>
 
         <form className={styles.formulaire}>
-          <input type="text" name="username" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
-          <input type="email" name="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-          <input type="password" name="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+          <label className={styles.labels} htmlFor="username">Enter your username : <input aria-label="Input Username" id="username" type="text" name="username" placeholder="Username" onChange={(e) => setUsername(e.target.value)} /> </label>
+
+          <label className={styles.labels} htmlFor="email">Enter your email : <input aria-label="Input Email" id="email" type="email" name="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} /> </label>
+
+          <label className={styles.labels} htmlFor="password">
+            Enter your password :
+            <input aria-label="Input Password" id="password" type="password" name="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+          </label>
         </form>
 
         <div className={styles.rules}>

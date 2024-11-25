@@ -17,7 +17,7 @@ const LoginForm = () => {
                 console.log("Request response:", result);
                 if (result.status === 200) {
                     localStorage.setItem("username", result.data.username);
-                    navigate("/");
+                    navigate("/home");
                 }
                 else {
                     console.log(result.error);
@@ -34,12 +34,18 @@ const LoginForm = () => {
                 <img src="./Logo/LogoWhiteV.png" alt="StatMind Logo" />
             </div>
 
-            <h3>Welcome back! Log in to continue.</h3>
+            <h2>Welcome back! Log in to continue.</h2>
 
-            <form className={styles.formulaire} action="">
-                <input type="text" name="Username" placeholder="Username" onChange={e => setUsername(e.target.value)} />
-                <input type="password" name="Password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+            <form className={styles.formulaire}>
+                <label className={styles.labels} htmlFor="username">Enter your username : <input type="text" name="Username" placeholder="Username" onChange={e => setUsername(e.target.value)} />
+                </label>
+
+                <label className={styles.labels} htmlFor="password">
+                    Enter your password :
+                    <input type="password" name="Password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+                </label>
             </form>
+
             <Link className={styles.btn_container} to="/">
                 <button onClick={handleSubmit} type="submit" className={styles.register_btn}>Log in</button>
             </Link>

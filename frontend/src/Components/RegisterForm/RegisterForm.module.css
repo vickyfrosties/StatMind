@@ -26,17 +26,20 @@ body {
       font-style: normal;
       font-size: 36px;
       align-self: flex-start;
+      padding: 0;
     }
 
-
     .formulaire {
-      margin-top: 1rem;
       width: 375px;
-      height: 180px;
+      height: 35%;
+      padding-top: 2rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: center;
+
+      .labels {
+        font-family: "Khand", serif;
+      }
 
       input {
         width: 100%;
@@ -47,6 +50,14 @@ body {
         border-radius: 5px;
         color: #202C31;
       }
+
+      input:focus {
+        background-color: #202C31;
+        border: 3px solid dark;
+        color: #EDF2F4;
+        color: #65d870;
+        font-weight: 600;
+      }
     }
 
     .rules {
@@ -56,9 +67,10 @@ body {
       font-optical-sizing: auto;
       font-weight: 600;
       font-style: normal;
-      font-size: 10px;
+      font-size: 12px;
       align-self: flex-start;
     }
+
 
     .register_container {
       width: 100%;

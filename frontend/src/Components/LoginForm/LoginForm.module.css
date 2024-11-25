@@ -26,16 +26,9 @@ body {
       width: 150px;
       margin-bottom: 1rem;
     }
-
-    h3 {
-      font-size: 20px;
-      font-family: "Khand", serif;
-      font-weight: 600;
-      font-style: normal;
-    }
   }
 
-  h3 {
+  h2 {
     font-family: "Overpass", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
@@ -49,9 +42,13 @@ body {
     display: flex;
     flex-direction: column;
     width: 375px;
-    height: 110px;
+    height: 160px;
     justify-content: space-between;
     align-items: center;
+
+    .labels {
+      font-family: "Khand", serif;
+    }
 
     input {
       width: 100%;
@@ -61,6 +58,14 @@ body {
       border: 1px solid #202C31;
       border-radius: 5px;
       color: #202C31;
+    }
+
+    input:focus {
+      background-color: #202C31;
+      border: 3px solid dark;
+      color: #EDF2F4;
+      color: #65d870;
+      font-weight: 600;
     }
   }
 

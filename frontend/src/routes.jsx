@@ -15,7 +15,7 @@ const routes = [
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <LaunchingPage />,
       },
 
       {
@@ -44,8 +44,8 @@ const routes = [
         element: <RegisterForm />,
       },
       {
-        path: "launch",
-        element: <LaunchingPage />,
+        path: "home",
+        element: <HomePage />,
       },
 
     ]
