@@ -9,7 +9,6 @@ import MediaQuery from "react-responsive";
 
 const HistoryPage = () => {
   const [history, setHistory] = useState([]);
-  const username = localStorage.getItem("username");
   // to filter the data whether it is by day, week or month
   const [filteredData, setFilteredData] = useState([]);
 
@@ -31,10 +30,16 @@ const HistoryPage = () => {
     );
   };
 
-  useEffect((username) => {
+  useEffect(() => {
     const fetchData = async () => {
+      const username = localStorage.getItem("username");
+
       try {
-        const response = await axios.get("http://localhost:8000/history");
+        const response = await axios.get("http://localhost:8000/history", { params: { username } });
+
+        if (!username) {
+          console.log("There's no username found for those data.");
+        }
         // set the history with the current data stored in the database 
         setHistory(response.data);
       }
@@ -43,7 +48,7 @@ const HistoryPage = () => {
       }
     };
     fetchData();
-  }, [username]);
+  }, []);
 
   return (
     <>
@@ -51,7 +56,7 @@ const HistoryPage = () => {
         <Header />
       </MediaQuery>
       <section className={styles.main_section}>
-        <h2 className={styles.title}>{username}'s History</h2>
+        <h2 className={styles.title}>{localStorage.getItem("username")}'s History</h2>
         <div className={styles.buttons_container}>
           <button value={"DAY"} onClick={handleClick}>DAY</button>
           <button value={"WEEK"} onClick={handleClick}>WEEK</button>

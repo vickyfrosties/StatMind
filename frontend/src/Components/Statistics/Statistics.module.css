@@ -20,6 +20,8 @@ body {
             font-family: "Khand", sans-serif;
             font-size: 35px;
             margin-bottom: 1rem;
+            text-align: left;
+
         }
 
         .buttons_container {

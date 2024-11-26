@@ -28,7 +28,7 @@ const MainForm = () => {
 
     // verify is inputs are empty
     if (!username || !description || !favoriteMusic || !favoriteBook || !pictureOfTheDay || emotions.length === 0) {
-      console.error("All fields are required!");
+      alerts("All fields are required!");
       return;
     }
     try {
@@ -111,7 +111,7 @@ const MainForm = () => {
           </div>
 
           <button onClick={handleSubmit}>
-            <Link to="/"><img className={styles.validation_btn} src="/Icons/Valid-BtnDark.png" alt="Validation Button" /> </Link>
+            <Link to="/home"><img className={styles.validation_btn} src="/Icons/Valid-BtnDark.png" alt="Validation Button" /> </Link>
           </button>
         </form>
       </section >

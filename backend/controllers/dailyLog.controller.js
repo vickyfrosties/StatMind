@@ -46,7 +46,7 @@ async function historyController(req, res) {
 async function statisticsController(req, res) {
     try {
         const { username, emotions, createdAt } = req.query;
-        const statistics = await EmotionsData.find({}, "username emotions createdAt");
+        const statistics = await EmotionsData.find({ username }, "username emotions createdAt");
         if (statistics.length === 0) { console.log("No data found for the given parameters."); }
         console.log(statistics);
         res.status(201).json(statistics);

@@ -90,8 +90,13 @@ async function logoutController(req, res) {
 
 async function getHistoryData(req, res) {
   try {
+    const username = req.query.username;
+    console.log('Received username:', username);
+    if (typeof username !== 'string') {
+      return res.status(400).json({ error: 'Invalid username format' });
+    }
     // find the data in the collection
-    const data = await EmotionsData.find()
+    const data = await EmotionsData.find({ username })
       // sort it as the greatest 
       .sort({ createdAt: -1 })
       // limit to 50 data

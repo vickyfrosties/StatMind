@@ -37,33 +37,39 @@ const Statistics = () => {
 
   // get data to use it as statistics 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:8000/statistics");
+    const timeout = setTimeout(() => {
+      const fetchData = async () => {
+        const username = localStorage.getItem("username");
+        try {
+          const response = await axios.get("http://localhost:8000/statistics", { params: { username } });
+          console.log('Sent username:', username);
 
-        // formating the response data as right values to display them easily
-        const formattedData = response.data.map((item) => {
-          const date = new Date(item.createdAt);
-          const timeKey = formatTime(date);
+          // formating the response data as right values to display them easily
+          const formattedData = response.data.map((item) => {
+            const date = new Date(item.createdAt);
+            const timeKey = formatTime(date);
 
-          return {
-            x: timeScale[timeKey] || 0,
-            y: emotionScale[mapEmotionToCategory(item.emotions[0])] || 0,
-            color: emotionColors[item.emotions[0]] || gray
-          };
-        });
-        setChartData(formattedData);
-        console.log(formattedData);
-      }
+            return {
+              x: timeScale[timeKey] || 0,
+              y: emotionScale[mapEmotionToCategory(item.emotions[0])] || 0,
+              color: emotionColors[item.emotions[0]] || gray
+            };
+          });
+          setChartData(formattedData);
+          console.log(formattedData);
+        }
 
-      catch (error) {
-        console.error('Error fetching data:', error);
-      }
-      finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
+        catch (error) {
+          console.error('Error fetching data:', error);
+        }
+        finally {
+          setLoading(false);
+        }
+      };
+      console.log('This will be called every 2 seconds');
+      fetchData();
+    }, 10000);
+    return () => clearTimeout(timeout);
   }, []);
 
   // format the date
