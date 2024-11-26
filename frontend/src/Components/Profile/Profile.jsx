@@ -14,13 +14,13 @@ const Profile = () => {
   const username = localStorage.getItem("username");
 
   const emotionsIcons = {
-    "Happy": "./public/Icons/smiley.svg",
-    "Sad": "./public/Icons/smiley-sad.svg",
-    "Angry": "./public/Icons/smiley-angry.svg",
-    "Disgust": "./public/Icons/smiley-nervous.svg",
-    "Overwhelmed": "./public/Icons/smiley-melting.svg",
-    "Surprised": "./public/Icons/smiley-surprised.svg",
-    "Anxious": "./public/Icons/smiley-melting.svg",
+    "Happy": "./Icons/smiley.svg",
+    "Sad": "./Icons/smiley-sad.svg",
+    "Angry": "./Icons/smiley-angry.svg",
+    "Disgust": "./Icons/smiley-nervous.svg",
+    "Overwhelmed": "./Icons/smiley-melting.svg",
+    "Surprised": "./Icons/smiley-surprised.svg",
+    "Anxious": "./Icons/smiley-melting.svg",
   };
 
   // this request notify the server that a user has been logged out

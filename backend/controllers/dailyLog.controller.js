@@ -73,4 +73,20 @@ async function lastEmotionController(req, res) {
 
 }
 
-module.exports = { newEntryController, historyController, statisticsController, lastEmotionController };
+async function calendarController(req, res) {
+    try {
+        const { username, emotions, createdAt } = req.query;
+        const calendar = await EmotionsData.find({}, "username emotions createdAt");
+
+        if (calendar.length === 0) { console.log("No data found for the given parameters."); }
+        console.log(calendar);
+        res.status(201).json(calendar);
+    }
+
+    catch (error) {
+        console.error("Error fetching statistics", error);
+        res.status(500).json({ error: "Failed to fetch user data statistics" });
+    }
+}
+
+module.exports = { newEntryController, historyController, statisticsController, lastEmotionController, calendarController };

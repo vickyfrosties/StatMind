@@ -50,17 +50,29 @@ const HistoryPage = () => {
     fetchData();
   }, []);
 
+  const emotionsIcons = {
+    "Happy": "./Icons/smiley.svg",
+    "Sad": "./Icons/smiley-sad.svg",
+    "Angry": "./Icons/smiley-angry.svg",
+    "Disgust": "./Icons/smiley-nervous.svg",
+    "Overwhelmed": "./Icons/smiley-melting.svg",
+    "Surprised": "./Icons/smiley-surprised.svg",
+    "Anxious": "./Icons/smiley-melting.svg",
+  };
+
   return (
     <>
       <MediaQuery minWidth={550}>
         <Header />
       </MediaQuery>
       <section className={styles.main_section}>
-        <h2 className={styles.title}>{localStorage.getItem("username")}'s History</h2>
-        <div className={styles.buttons_container}>
-          <button value={"DAY"} onClick={handleClick}>DAY</button>
-          <button value={"WEEK"} onClick={handleClick}>WEEK</button>
-          <button value={"MONTH"} onClick={handleClick}>MONTH</button>
+        <div className={styles.main_container}>
+          <h2 className={styles.title}>{localStorage.getItem("username")}'s History</h2>
+          <div className={styles.buttons_container}>
+            <button value={"DAY"} onClick={handleClick}>DAY</button>
+            <button value={"WEEK"} onClick={handleClick}>WEEK</button>
+            <button value={"MONTH"} onClick={handleClick}>MONTH</button>
+          </div>
         </div>
 
         <section className={styles.snd_section}>
@@ -76,13 +88,19 @@ const HistoryPage = () => {
                       <p>{new Date(entry.createdAt).toLocaleDateString("fr-FR")}</p>
                       <p>at {new Date(entry.createdAt).toLocaleTimeString("fr-FR")}</p>
                     </div>
+
                     <div className={styles.history_info_light}>
-                      <p className={styles.history}>{entry.emotions}</p>
-                      <p className={styles.history}>{entry.description}</p>
-                      <p className={styles.history}>{entry.favoriteMusic}</p>
-                      <p className={styles.history}>{entry.favoriteBook}</p>
-                      <p className={styles.history}>{entry.pictureOfTheDay}</p>
-                      <p className={styles.history}>{entry.emotions}</p>
+                      <div className={styles.icon_emotion}>
+                        <img src={emotionsIcons[entry.emotions]} alt={entry.emotions} />
+                        <p className={styles.history}>{entry.emotions}</p>
+                      </div>
+
+                      <div className={styles.infos}>
+                        <p className={styles.history}>{entry.description}</p>
+                        <p className={styles.history}>Today's song : {entry.favoriteMusic}</p>
+                        <p className={styles.history}>Today's book : {entry.favoriteBook}</p>
+                        <p className={styles.history}>{entry.pictureOfTheDay.slice(12)}</p>
+                      </div>
                     </div>
                   </li>
                 ))}

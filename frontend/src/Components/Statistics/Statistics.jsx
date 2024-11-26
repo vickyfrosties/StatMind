@@ -37,12 +37,17 @@ const Statistics = () => {
 
   // get data to use it as statistics 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      const fetchData = async () => {
-        const username = localStorage.getItem("username");
+    const fetchData = async () => {
+
+      const username = localStorage.getItem("username");
+      const lastDateFetched = localStorage.getItem("lastDateFetched");
+      const date = new Date().toLocaleString("fr-FR");
+
+      // if the date has changed then fetch new data 
+      if (!lastDateFetched || lastDateFetched !== date) {
         try {
           const response = await axios.get("http://localhost:8000/statistics", { params: { username } });
-          console.log('Sent username:', username);
+
 
           // formating the response data as right values to display them easily
           const formattedData = response.data.map((item) => {
@@ -55,6 +60,7 @@ const Statistics = () => {
               color: emotionColors[item.emotions[0]] || gray
             };
           });
+
           setChartData(formattedData);
           console.log(formattedData);
         }
@@ -65,11 +71,10 @@ const Statistics = () => {
         finally {
           setLoading(false);
         }
-      };
-      console.log('This will be called every 2 seconds');
-      fetchData();
-    }, 10000);
-    return () => clearTimeout(timeout);
+      }
+    };
+    fetchData();
+
   }, []);
 
   // format the date
