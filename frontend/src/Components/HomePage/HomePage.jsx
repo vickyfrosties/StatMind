@@ -6,7 +6,6 @@ import MediaQuery from "react-responsive";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./Calendar.modules.css";
 
 const HomePage = () => {
   const username = localStorage.getItem("username");
@@ -18,6 +17,7 @@ const HomePage = () => {
       try {
         const response = await axios.get("http://localhost:8000/home", { params: { username } });
         setDate(response.data);
+        console.log(response.data);
       }
       catch (error) {
         console.log("Failed to fetch data", error);
@@ -28,11 +28,9 @@ const HomePage = () => {
 
   function getCurrentWeek() {
     const today = new Date();
-    // get day by number 0 = Sunday
     const day = today.getDay();
     const startWeek = new Date(today);
     const endWeek = new Date(today);
-
     // Monday
     startWeek.setDate(today.getDate() - (day === 0 ? 6 : day - 1));
     // Sunday
@@ -54,6 +52,16 @@ const HomePage = () => {
   }
   const weekDays = getWeekDays(startWeek);
 
+  const emotionIcon = {
+    "Happy": "./Icons/p-happy.svg",
+    "Sad": "./Icons/p-sad.svg",
+    "Angry": "./Icons/p-angry.svg",
+    "Disgust": "./Icons/p-nervous.svg",
+    "Overwhelmed": "./Icons/p-melting.svg",
+    "Surprised": "./Icons/p-surprised.svg",
+    "Anxious": "./Icons/p-melting.svg",
+  };
+
   return (
     <>
       <MediaQuery minWidth={550}>
@@ -61,23 +69,22 @@ const HomePage = () => {
       </MediaQuery>
 
       <section className={styles.main_container}>
-
         <div className={styles.calendar_container} >
           {weekDays.map((day) => (
             <div key={day.toDateString()} className={styles.date_container}>
               <p>{day.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase()}
               </p>
-              <img src="" alt="" />
+
               <p>{day.toLocaleDateString('fr-FR', { day: 'numeric', month: 'numeric' })}
               </p>
-              <img src="" alt="" />
+              <img src={emotionIcon[date]} alt={date.emotions} />
 
             </div>
           ))}
         </div>
 
         <div className={styles.main}>
-          <h2>Hi {username}, how do you feel today?</h2>
+          <h2 className={styles.home_title}>Hi {username}, how do you feel today?</h2>
           <img src="/Logo/Colors-Wheel.png" alt="Color's Wheel" />
 
           <MediaQuery minWidth={550}>
