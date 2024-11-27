@@ -103,6 +103,23 @@ body {
 
       }
 
+      .no_data_dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: lightgray;
+        margin-top: 4px;
+      }
+
+      .today_dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: grey;
+        position: absolute;
+        bottom: -10px;
+      }
+
     }
   }
 
