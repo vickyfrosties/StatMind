@@ -4,9 +4,9 @@ import Header from "../../Containers/Header/Header";
 import Footer from "../../Containers/Footer/Footer";
 import MediaQuery from "react-responsive";
 import { Link } from "react-router-dom";
-import Calendar from 'react-calendar';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./Calendar.modules.css";
 
 const HomePage = () => {
   const username = localStorage.getItem("username");
@@ -14,17 +14,45 @@ const HomePage = () => {
   const [date, setDate] = useState([]);
 
   useEffect(() => {
-    const matchDate = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/home");
+        const response = await axios.get("http://localhost:8000/home", { params: { username } });
         setDate(response.data);
       }
       catch (error) {
         console.log("Failed to fetch data", error);
       }
     };
-    matchDate();
+    fetchData();
   }, []);
+
+  function getCurrentWeek() {
+    const today = new Date();
+    // get day by number 0 = Sunday
+    const day = today.getDay();
+    const startWeek = new Date(today);
+    const endWeek = new Date(today);
+
+    // Monday
+    startWeek.setDate(today.getDate() - (day === 0 ? 6 : day - 1));
+    // Sunday
+    endWeek.setDate(startWeek.getDate() + 6);
+
+    return { startWeek, endWeek };
+  }
+
+  const { startWeek, endWeek } = getCurrentWeek();
+
+  function getWeekDays(starWeek) {
+    const days = [];
+    for (let i = 0; i < 7; i++) {
+      const day = new Date(starWeek);
+      day.setDate(startWeek.getDate() + i); // Add days to startOfWeek
+      days.push(day);
+    }
+    return days;
+  }
+  const weekDays = getWeekDays(startWeek);
 
   return (
     <>
@@ -33,14 +61,21 @@ const HomePage = () => {
       </MediaQuery>
 
       <section className={styles.main_container}>
-        <div className={styles.calendar_container}>
-          <Calendar
-            view="month"
-            showNavigation={false}
 
-            formatShortWeekday={(locale, date) => date.toLocaleString("en-US", { weekday: 'short' }).toUpperCase()}
-          />
+        <div className={styles.calendar_container} >
+          {weekDays.map((day) => (
+            <div key={day.toDateString()} className={styles.date_container}>
+              <p>{day.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase()}
+              </p>
+              <img src="" alt="" />
+              <p>{day.toLocaleDateString('fr-FR', { day: 'numeric', month: 'numeric' })}
+              </p>
+              <img src="" alt="" />
+
+            </div>
+          ))}
         </div>
+
         <div className={styles.main}>
           <h2>Hi {username}, how do you feel today?</h2>
           <img src="/Logo/Colors-Wheel.png" alt="Color's Wheel" />

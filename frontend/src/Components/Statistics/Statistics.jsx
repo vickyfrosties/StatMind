@@ -38,43 +38,61 @@ const Statistics = () => {
   // get data to use it as statistics 
   useEffect(() => {
     const fetchData = async () => {
-
       const username = localStorage.getItem("username");
-      const lastDateFetched = localStorage.getItem("lastDateFetched");
-      const date = new Date().toLocaleString("fr-FR");
 
       // if the date has changed then fetch new data 
-      if (!lastDateFetched || lastDateFetched !== date) {
-        try {
-          const response = await axios.get("http://localhost:8000/statistics", { params: { username } });
+      try {
+        const response = await axios.get("http://localhost:8000/statistics", { params: { username } });
 
+        // formating the response data as right values to display them easily
+        const formattedData = response.data.map((item) => {
+          const date = new Date(item.createdAt);
+          const timeKey = formatTime(date);
 
-          // formating the response data as right values to display them easily
-          const formattedData = response.data.map((item) => {
-            const date = new Date(item.createdAt);
-            const timeKey = formatTime(date);
+          return {
+            x: timeScale[timeKey] || 0,
+            y: emotionScale[mapEmotionToCategory(item.emotions[0])] || 0,
+            color: emotionColors[item.emotions[0]] || gray
+          };
+        });
 
-            return {
-              x: timeScale[timeKey] || 0,
-              y: emotionScale[mapEmotionToCategory(item.emotions[0])] || 0,
-              color: emotionColors[item.emotions[0]] || gray
-            };
-          });
-
-          setChartData(formattedData);
-          console.log(formattedData);
-        }
-
-        catch (error) {
-          console.error('Error fetching data:', error);
-        }
-        finally {
-          setLoading(false);
-        }
+        setChartData(formattedData);
+        console.log(formattedData);
       }
-    };
-    fetchData();
 
+      catch (error) {
+        console.error('Error fetching data:', error);
+      }
+
+      finally {
+        setLoading(false);
+      }
+
+
+    };
+
+    // calculate and set the reset so data renders each day after midnight
+    const now = new Date();
+    // const tilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1).getTime() - now.getTime();
+    const tilNoon = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getHours() >= 12 ? now.getDate() + 1 : now.getDate(), // If past 12 PM, go to next day
+      12, // Set hour to 12 (noon)
+      0,  // Set minutes to 0
+      0   // Set seconds to 0
+    ).getTime() - now.getTime();
+    console.log("Time until 12pm:", tilNoon);
+
+
+    fetchData();
+    // reset data after midnight if not then fetch new data
+    const midnightTimeOut = setTimeout(() => {
+      setChartData([]);
+      fetchData();
+    }, tilNoon);
+
+    return () => clearTimeout(midnightTimeOut);
   }, []);
 
   // format the date

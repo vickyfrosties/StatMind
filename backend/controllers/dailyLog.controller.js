@@ -75,8 +75,8 @@ async function lastEmotionController(req, res) {
 
 async function calendarController(req, res) {
     try {
-        const { username, emotions, createdAt } = req.query;
-        const calendar = await EmotionsData.find({}, "username emotions createdAt");
+        const { username } = req.query;
+        const calendar = await EmotionsData.find({ username }).sort({ createdAt: -1 });
 
         if (calendar.length === 0) { console.log("No data found for the given parameters."); }
         console.log(calendar);
