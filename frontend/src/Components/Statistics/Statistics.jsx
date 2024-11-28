@@ -19,8 +19,6 @@ const Statistics = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("daily");
 
   const handleClick = (period) => {
-    // const value = e.target.value;
-    // console.log(value);
     setSelectedPeriod(period);
   };
 
@@ -86,7 +84,6 @@ const Statistics = () => {
     ).getTime() - now.getTime();
     console.log("Time until 12pm:", tilNoon);
 
-
     fetchData();
     // reset data after midnight if not then fetch new data
     const midnightTimeOut = setTimeout(() => {
@@ -148,11 +145,14 @@ const Statistics = () => {
 
       case "weekly":
         return <VictoryStack>
-          <VictoryBar data={chartData} />
+          {chartData.map((datum, index) => (<VictoryBar key={index} data={chartData} style={{ data: { fill: ({ datum }) => datum.color } }} />))}
+          <VictoryAxis
+          />
+          <VictoryAxis dependentAxis />
         </VictoryStack>;
 
       case "monthly":
-        return <VictoryPie data={chartData} />;
+        return <VictoryPie padAngle={5} data={chartData} />;
     }
   };
 

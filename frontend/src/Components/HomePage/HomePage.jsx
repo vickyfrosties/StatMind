@@ -16,7 +16,6 @@ const HomePage = () => {
       try {
         const response = await axios.get("http://localhost:8000/home", { params: { username } });
         setDate(response.data);
-        console.log(response.data);
       }
       catch (error) {
         console.log("Failed to fetch data", error);

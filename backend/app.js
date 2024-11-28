@@ -1,6 +1,8 @@
 const dotenv = require('dotenv').config();
 const express = require("express");
 const app = express();
+const cron = require("node-cron");
+const { statisticsController } = require("./controllers/dailyLog.controller");
 
 // autorize requests between cross-origin
 const cors = require("cors");
@@ -43,6 +45,11 @@ app.use(session({
   // change to true if HTTPS request. Here HTTP ONLY
   cookie: { secure: false }
 }));
+
+cron.schedule("0 0 0 * * *", () => {
+  statisticsController();
+  console.log('Reset statistics at midnight.');
+});
 
 // Routes
 app.use(authRouter);

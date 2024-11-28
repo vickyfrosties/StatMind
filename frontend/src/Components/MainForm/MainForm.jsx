@@ -19,7 +19,6 @@ const MainForm = () => {
     e.preventDefault();
     const value = e.target.value;
     setEmotions(value);
-    console.log("Selected emotion:", value);
     setIsClicked((prevState) => !prevState);
   };
 
