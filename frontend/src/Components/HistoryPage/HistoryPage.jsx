@@ -57,7 +57,7 @@ const HistoryPage = () => {
     "Disgust": "./Icons/smiley-nervous.svg",
     "Overwhelmed": "./Icons/smiley-melting.svg",
     "Surprised": "./Icons/smiley-surprised.svg",
-    "Anxious": "./Icons/smiley-melting.svg",
+    "Anxious": "./Icons/smiley-anxious.svg",
   };
 
   return (

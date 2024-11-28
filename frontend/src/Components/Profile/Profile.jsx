@@ -20,7 +20,7 @@ const Profile = () => {
     "Disgust": "./Icons/smiley-nervous.svg",
     "Overwhelmed": "./Icons/smiley-melting.svg",
     "Surprised": "./Icons/smiley-surprised.svg",
-    "Anxious": "./Icons/smiley-melting.svg",
+    "Anxious": "./Icons/smiley-anxious.svg",
   };
 
   // this request notify the server that a user has been logged out
