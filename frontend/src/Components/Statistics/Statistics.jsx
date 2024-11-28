@@ -5,7 +5,10 @@ import {
   VictoryChart,
   VictoryTheme, VictoryAxis,
   VictoryScatter,
-  VictoryLegend
+  VictoryLegend,
+  VictoryBar,
+  VictoryStack,
+  VictoryPie
 } from "victory";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -13,10 +16,12 @@ import axios from "axios";
 const Statistics = () => {
   const [loading, setLoading] = useState(true);
   const [chartData, setChartData] = useState([]);
+  const [selectedPeriod, setSelectedPeriod] = useState("daily");
 
-  const handleClick = (e) => {
-    const value = e.target.value;
-    console.log(value);
+  const handleClick = (period) => {
+    // const value = e.target.value;
+    // console.log(value);
+    setSelectedPeriod(period);
   };
 
   // Y axis
@@ -67,20 +72,17 @@ const Statistics = () => {
       finally {
         setLoading(false);
       }
-
-
     };
 
     // calculate and set the reset so data renders each day after midnight
     const now = new Date();
-    // const tilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1).getTime() - now.getTime();
     const tilNoon = new Date(
       now.getFullYear(),
       now.getMonth(),
-      now.getHours() >= 12 ? now.getDate() + 1 : now.getDate(), // If past 12 PM, go to next day
-      12, // Set hour to 12 (noon)
-      0,  // Set minutes to 0
-      0   // Set seconds to 0
+      now.getHours() >= 12 ? now.getDate() + 1 : now.getDate(),
+      12,
+      0,
+      0
     ).getTime() - now.getTime();
     console.log("Time until 12pm:", tilNoon);
 
@@ -128,15 +130,41 @@ const Statistics = () => {
     Anxious: "#E4572E",
   };
 
+  const renderChart = () => {
+    switch (selectedPeriod) {
+      case "daily":
+        return <VictoryAxis
+          // values for times
+          tickValues={Object.values(timeScale)}
+          // labels for times
+          tickFormat={Object.keys(timeScale)}
+        />,
+          <VictoryAxis
+            dependentAxis
+            tickValues={Object.values(emotionScale)}
+            tickFormat={Object.keys(emotionScale)}
+          />,
+          <VictoryScatter data={chartData} size={7} style={{ data: { fill: ({ datum }) => datum.color } }} />;
+
+      case "weekly":
+        return <VictoryStack>
+          <VictoryBar data={chartData} />
+        </VictoryStack>;
+
+      case "monthly":
+        return <VictoryPie data={chartData} />;
+    }
+  };
+
   return (
     <>
       <section className={styles.main_section}>
         <h2 className={styles.title}>Statistics</h2>
 
         <div className={styles.buttons_container}>
-          <button value={"DAY"} onClick={handleClick}>DAY</button>
-          <button value={"WEEK"} onClick={handleClick}>WEEK</button>
-          <button value={"MONTH"} onClick={handleClick}>MONTH</button>
+          <button value={"DAY"} onClick={() => handleClick("daily")}>DAY</button>
+          <button value={"WEEK"} onClick={() => handleClick("weekly")}>WEEK</button>
+          <button value={"MONTH"} onClick={() => handleClick("monthly")}>MONTH</button>
         </div>
 
         <section className={styles.stats_container}>
@@ -144,25 +172,9 @@ const Statistics = () => {
             domain={{ x: [0, 4] }}
             width={450} height={375}
             theme={VictoryTheme.material}>
-
-            <VictoryAxis
-              // values for times
-              tickValues={Object.values(timeScale)}
-              // labels for times
-              tickFormat={Object.keys(timeScale)}
-            />
-            <VictoryAxis
-              dependentAxis
-              tickValues={Object.values(emotionScale)}
-              tickFormat={Object.keys(emotionScale)}
-            />
-
-            <VictoryScatter
-              data={chartData}
-              size={7}
-              style={{ data: { fill: ({ datum }) => datum.color } }}
-            />
+            {renderChart()}
           </VictoryChart>
+
           <div>
             <VictoryLegend
               x={15} y={10} itemsPerRow={2}

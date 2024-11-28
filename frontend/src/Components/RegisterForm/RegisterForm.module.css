@@ -58,6 +58,18 @@ body {
         color: #65d870;
         font-weight: 600;
       }
+
+      .register_btn {
+        /* width: 250px; */
+        height: 35px;
+        background-color: #202C31;
+        border-radius: 5px;
+        border: none;
+        font-family: "Khand", serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 20px;
+      }
     }
 
     .rules {
@@ -78,17 +90,7 @@ body {
       justify-content: center;
       padding: 10rem 0 15px;
 
-      .register_btn {
-        width: 250px;
-        height: 35px;
-        background-color: #202C31;
-        border-radius: 5px;
-        border: none;
-        font-family: "Khand", serif;
-        font-weight: 600;
-        font-style: normal;
-        font-size: 20px;
-      }
+
 
     }
 
