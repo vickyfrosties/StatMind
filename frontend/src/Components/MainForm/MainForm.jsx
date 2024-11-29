@@ -1,7 +1,7 @@
 import axios from "axios";
 import MainMenu from "../../Containers/Menu/MainMenu";
 import styles from "./Main.module.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import MediaQuery from "react-responsive";
 import Header from "../../Containers/Header/Header";
@@ -14,6 +14,7 @@ const MainForm = () => {
   const [pictureOfTheDay, setPictureOfTheDay] = useState("");
   const [emotions, setEmotions] = useState("");
   const [isClicked, setIsClicked] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -27,9 +28,14 @@ const MainForm = () => {
 
     // verify is inputs are empty
     if (!username || !description || !favoriteMusic || !favoriteBook || !pictureOfTheDay || emotions.length === 0) {
-      alerts("All fields are required!");
+      alert("All fields are required!");
       return;
     }
+
+    else (
+      navigate("/home")
+    );
+
     try {
       const result = await axios.post("http://localhost:8000/form", {
         username,
@@ -54,6 +60,7 @@ const MainForm = () => {
       </MediaQuery>
       <section className={styles.first_section}>
         <h3>I feel...</h3>
+
         <div className={styles.btn_container}>
           <button className={isClicked ? styles.happy_clicked : styles.button_unclicked} value={"Happy"} onClick={handleClick}>
             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#FDD012" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216ZM80,108a12,12,0,1,1,12,12A12,12,0,0,1,80,108Zm96,0a12,12,0,1,1-12-12A12,12,0,0,1,176,108Zm-1.07,48c-10.29,17.79-27.4,28-46.93,28s-36.63-10.2-46.92-28a8,8,0,1,1,13.84-8c7.47,12.91,19.21,20,33.08,20s25.61-7.1,33.07-20a8,8,0,0,1,13.86,8Z"></path>
@@ -88,7 +95,7 @@ const MainForm = () => {
         </div>
         <h3>Because...</h3>
 
-        <form className={styles.mood_form} action="">
+        <form className={styles.mood_form} >
           <textarea className={styles.description} name="description" id="description" onChange={(e) => setDescription(e.target.value)}>
           </textarea>
 
@@ -109,9 +116,11 @@ const MainForm = () => {
             </div>
           </div>
 
-          <button onClick={handleSubmit}>
-            <Link to="/home"><img className={styles.validation_btn} src="/Icons/Valid-BtnDark.png" alt="Validation Button" /> </Link>
-          </button>
+          <div className={styles.btn_container}>
+            <button onClick={handleSubmit}>
+              <p className={styles.validation_btn}>Confirm</p>
+            </button>
+          </div>
         </form>
       </section >
       <MainMenu />

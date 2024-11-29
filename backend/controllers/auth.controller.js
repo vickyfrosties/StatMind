@@ -33,8 +33,7 @@ async function registrationController(req, res) {
     const token = jwtTool.generate(data);
 
     const newUser = await Members.create({ username, email, password: hash, authToken: token });
-
-    res.status(201).json({ message: "Account has been created successfully !", token });
+    res.status(201).json({ message: "Account has been created successfully !", username: newUser });
   }
 
   catch (error) {
@@ -60,7 +59,7 @@ async function loginController(req, res) {
 
     // if pwd is valid then operation is a success
     if (isPwdValid) {
-      return res.status(200).json({ success: "Credentials valid. Access authorized.", username: memberCreds.username });
+      return res.status(201).json({ success: "Credentials valid. Access authorized.", username: memberCreds.username });
     }
 
     else {

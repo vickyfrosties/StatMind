@@ -78,7 +78,8 @@ const HistoryPage = () => {
         <section className={styles.snd_section}>
           <div className={styles.history_container}>
             {history.length === 0 ? (
-              <p>No history found yet. Start the journey by entering today's current mood.</p>
+              <p className={styles.empty_page}>No history found yet ＞︿＜. Start the journey by entering today's current mood.</p>
+
             ) : (
               <ul>
                 {history.map((entry, index) => (

@@ -52,6 +52,7 @@ const Profile = () => {
     getLastEmotion();
   }, []);
 
+  const defaultIcon = "./Icons/smiley-empty.svg";
 
   return (
     <>
@@ -66,7 +67,9 @@ const Profile = () => {
             <h2>{username}</h2>
           </div>
 
-          <img className={styles.current_emotion} src={emotionsIcons[currentEmotion.emotions]} alt={currentEmotion.emotions} />
+          {currentEmotion ? (
+            <img className={styles.current_emotion} src={emotionsIcons[currentEmotion.emotions]} alt={currentEmotion.emotions} />
+          ) : (<img src={defaultIcon} alt="There's no feeling saved yet, to start the journey, please enter today's mood." />)}
         </div>
 
         <div className={styles.button_container}>

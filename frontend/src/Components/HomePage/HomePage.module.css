@@ -100,10 +100,10 @@ body {
           font-weight: 900;
           font-size: 20px;
         }
-
       }
 
       .today {
+        /* border: 2px solid darkcyan; */
         height: 100px;
         display: flex;
         flex-direction: column;
@@ -116,7 +116,8 @@ body {
         width: 18px;
         height: 18px;
         position: absolute;
-        top: 115px;
+        top: 85px;
+        /* border: 2px solid darkcyan; */
       }
 
       .today_dot {
@@ -125,10 +126,9 @@ body {
         border-radius: 50%;
         background-color: rgb(47, 47, 47);
         position: absolute;
-        top: 195px;
-        left: 49%;
+        top: 160px;
+        /* left: 49%; */
       }
-
     }
   }
 

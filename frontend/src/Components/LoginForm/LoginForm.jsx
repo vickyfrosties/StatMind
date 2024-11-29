@@ -15,7 +15,7 @@ const LoginForm = () => {
         await axios.post("http://localhost:8000/login", { username, password },)
             .then(result => {
                 console.log("Request response:", result);
-                if (result.status === 200) {
+                if (result.status === 201) {
                     localStorage.setItem("username", result.data.username);
                     navigate("/home");
                 }

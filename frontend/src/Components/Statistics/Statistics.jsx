@@ -60,7 +60,7 @@ const Statistics = () => {
         });
 
         setChartData(formattedData);
-        console.log(formattedData);
+        // console.log(formattedData);
       }
 
       catch (error) {
@@ -82,7 +82,7 @@ const Statistics = () => {
       0,
       0
     ).getTime() - now.getTime();
-    console.log("Time until 12pm:", tilNoon);
+    // console.log("Time until 12pm:", tilNoon);
 
     fetchData();
     // reset data after midnight if not then fetch new data

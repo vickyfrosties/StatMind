@@ -104,8 +104,6 @@ const HomePage = () => {
           })}
         </div>
 
-
-
         <div className={styles.main}>
           <h2 className={styles.home_title}>Hi {username}, how do you feel today?</h2>
           <img src="/Logo/Colors-Wheel.png" alt="The color wheel, representing the colors of emotions. Each petal represents a color that represents an emotion." />

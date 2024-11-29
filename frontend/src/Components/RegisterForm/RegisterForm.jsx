@@ -16,11 +16,11 @@ const RegisterForm = () => {
 
     await axios.post("http://localhost:8000/register", { username, email, password })
       .then(result => {
-        console.log("Request response:", result);
-        if (result.status === 200) {
-          localStorage.setItem("username", result.data.username);
+        // console.log("Request response:", result);
+        const storage = localStorage.setItem("username", username);
+        if (result.status === 201) {
+          navigate("/home");
         }
-        navigate("/");
       })
 
       .catch(error => console.log("Error:", error));
