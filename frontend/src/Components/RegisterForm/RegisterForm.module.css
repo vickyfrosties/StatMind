@@ -1,16 +1,4 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
-  width: 100%;
-  height: 100vh;
-}
-
 @media (min-width: 390px) and (max-width: 550px) {
-
   .container {
     width: 100%;
     height: 100vh;
@@ -45,22 +33,20 @@ body {
         width: 100%;
         height: 40px;
         padding: 1rem;
-        background-color: #EDF2F4;
-        border: 1px solid #202C31;
+        background-color: #edf2f4;
+        border: 1px solid #202c31;
         border-radius: 5px;
-        color: #202C31;
+        color: #202c31;
       }
 
       input:focus {
-        background-color: #202C31;
+        background-color: #202c31;
         border: 3px solid dark;
-        color: #EDF2F4;
+        color: #edf2f4;
         color: #65d870;
         font-weight: 600;
       }
-
     }
-
 
     .rules {
       width: 50%;
@@ -82,7 +68,7 @@ body {
       .register_btn {
         width: 250px;
         height: 35px;
-        background-color: #202C31;
+        background-color: #202c31;
         border-radius: 5px;
         border: none;
         font-family: "Khand", serif;
@@ -110,7 +96,6 @@ body {
         color: #000000;
         text-decoration: none;
       }
-
     }
   }
 }

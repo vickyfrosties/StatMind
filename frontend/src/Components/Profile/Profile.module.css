@@ -1,108 +1,97 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+@media (min-width: 390px) and (max-width: 550px) {
+  body {
     width: 100%;
     height: 100vh;
-}
+  }
 
-@media (min-width: 390px) and (max-width: 550px) {
-    body {
-        width: 100%;
-        height: 100vh;
+  .first_section {
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+    width: 80vw;
+    /* height: 90vh; */
+
+    .infos {
+      width: 100%;
+      /* height: 150px; */
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      .first_block {
+        width: 90%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 10px;
+      }
+
+      h2 {
+        padding: 10px;
+        font-family: "Khand", sans-serif;
+        font-weight: 600;
+        font-size: 35px;
+      }
     }
 
-    .first_section {
-        margin-top: 4rem;
-        margin-bottom: 1rem;
-        width: 80vw;
-        /* height: 90vh; */
+    .button_container {
+      height: 100px;
+      display: flex;
+      justify-content: space-around;
 
-        .infos {
-            width: 100%;
-            /* height: 150px; */
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+      button {
+        width: 150px;
+        height: 100%;
+        border: 1px solid #202c31;
+        border-radius: 4px;
+        background-color: #edf2f4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-            .first_block {
-                width: 90%;
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                padding: 10px;
-            }
-
-            h2 {
-                padding: 10px;
-                font-family: "Khand", sans-serif;
-                font-weight: 600;
-                font-size: 35px;
-            }
+        h2 {
+          padding: 0;
+          color: #202c31;
+          font-family: "Khand", sans-serif;
+          font-size: 20px;
+          font-weight: 600;
+          font-style: normal;
         }
-
-        .button_container {
-            height: 100px;
-            display: flex;
-            justify-content: space-around;
-
-            button {
-                width: 150px;
-                height: 100%;
-                border: 1px solid #202C31;
-                border-radius: 4px;
-                background-color: #EDF2F4;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                h2 {
-                    padding: 0;
-                    color: #202C31;
-                    font-family: "Khand", sans-serif;
-                    font-size: 20px;
-                    font-weight: 600;
-                    font-style: normal;
-                }
-            }
-        }
-
-        .current_emotion {
-            width: 60px;
-            height: 60px;
-        }
+      }
     }
 
-    .second_section {
-        /* border: 3px solid purple; */
-        padding: 15px;
-        height: auto;
-
-        .settings_container {
-            /* border: 1px solid magenta; */
-            width: 100%;
-            height: 70vh;
-        }
-
-        .settings {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            width: 100%;
-            height: 80px;
-
-            h3 {
-                margin-left: 2rem;
-                font-size: 20px;
-                font-family: "Khand", serif;
-                font-weight: 500;
-            }
-        }
+    .current_emotion {
+      width: 60px;
+      height: 60px;
     }
+  }
+
+  .second_section {
+    /* border: 3px solid purple; */
+    padding: 15px;
+    height: auto;
+
+    .settings_container {
+      /* border: 1px solid magenta; */
+      width: 100%;
+      height: 70vh;
+    }
+
+    .settings {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 80px;
+
+      h3 {
+        margin-left: 2rem;
+        font-size: 20px;
+        font-family: "Khand", serif;
+        font-weight: 500;
+      }
+    }
+  }
 }

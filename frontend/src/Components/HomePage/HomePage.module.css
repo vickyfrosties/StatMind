@@ -9,56 +9,86 @@
   --text: "Overpass", sans-serif;
 }
 
-body {
+.main_container {
   width: 100%;
-  min-height: 100vh;
-  background-color: var(--background-color);
-  color: var(--color);
+  height: 90%;
 
-  .main_container {
+  .main {
     width: 100%;
-    height: 80vh;
-    overflow: auto;
+    height: 70%;
+    min-height: 30vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    .main {
-      width: 100%;
-      height: 100%;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      button {
-        width: 200px;
-        height: 75px;
-        font-size: 20px;
-        background-color: var(--color);
-        border: var(--color);
-        border-radius: 10px;
-      }
-
-      a {
-        text-decoration: none;
-        color: var(--text);
-      }
-
-      button:hover {
-        background-color: #256EFF;
-      }
-
-      button:focus {
-        border: 8px solid #42ea88;
-      }
+    button {
+      width: 200px;
+      height: 75px;
+      font-size: 20px;
+      background-color: var(--color);
+      border: var(--color);
+      border-radius: 10px;
     }
 
-    h2 {
-      font-size: 30px;
-      font-family: var(--text);
+    a {
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    button:hover {
+      opacity: 0.8;
     }
   }
-}
 
+  .calendar_container {
+    display: flex;
+    width: 70%;
+    height: 8rem;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+  }
+  .date_container {
+    height: 100%;
+    font-weight: 700;
+    font-family: var(--text);
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 100%;
+    }
+
+    .today {
+      .today_dot {
+        width: 10px;
+        height: 10px;
+        background-color: black;
+        border-radius: 100%;
+      }
+    }
+
+    .bullet {
+      width: 30px;
+      height: 20px;
+    }
+  }
+
+  h2 {
+    font-size: 30px;
+    font-family: var(--text);
+  }
+}
 
 @media (390px <=width <=550px) {
   body {
@@ -144,6 +174,5 @@ body {
       height: 75px;
       font-size: 24px;
     }
-
   }
 }
