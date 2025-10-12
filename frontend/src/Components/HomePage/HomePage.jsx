@@ -14,10 +14,11 @@ const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/home", { params: { username } });
+        const response = await axios.get("http://localhost:8000/home", {
+          params: { username },
+        });
         setDate(response.data);
-      }
-      catch (error) {
+      } catch (error) {
         console.log("Failed to fetch data", error);
       }
     };
@@ -47,13 +48,13 @@ const HomePage = () => {
   }
 
   const emotionIcon = {
-    "Happy": "./Icons/p-happy.svg",
-    "Sad": "./Icons/p-sad.svg",
-    "Angry": "./Icons/p-angry.svg",
-    "Disgust": "./Icons/p-disgust.svg",
-    "Overwhelmed": "./Icons/p-overwhelmed.svg",
-    "Surprised": "./Icons/p-surprised.svg",
-    "Anxious": "./Icons/p-anxious.svg",
+    Happy: "./Icons/p-happy.svg",
+    Sad: "./Icons/p-sad.svg",
+    Angry: "./Icons/p-angry.svg",
+    Disgust: "./Icons/p-disgust.svg",
+    Overwhelmed: "./Icons/p-overwhelmed.svg",
+    Surprised: "./Icons/p-surprised.svg",
+    Anxious: "./Icons/p-anxious.svg",
   };
 
   const { startWeek } = getCurrentWeek();
@@ -61,67 +62,83 @@ const HomePage = () => {
 
   return (
     <>
-      <MediaQuery minWidth={550}>
-        <Header />
-      </MediaQuery>
-
       <section className={styles.main_container}>
-        <div className={styles.calendar_container} >
-
+        <div className={styles.calendar_container}>
           {weekDays.map((day) => {
             // format the date as YYYY-MM-DD to make it match w date in db
             const dateString = day.toISOString().split("T")[0];
             const today = new Date();
             // format the createdAt field in the db so it matches date in client side
-            const entry = date.find((item) => item.createdAt.split("T")[0] === dateString);
-            const emotion = entry && entry.emotions.length > 0 ? entry.emotions[0] : null;
+            const entry = date.find(
+              (item) => item.createdAt.split("T")[0] === dateString
+            );
+            const emotion =
+              entry && entry.emotions.length > 0 ? entry.emotions[0] : null;
 
             return (
               <div key={dateString} className={styles.date_container}>
-
                 {dateString === new Date().toISOString().split("T")[0] ? (
-
                   <div className={styles.today}>
                     {/* TODAY'S DATE */}
-                    <p>{day.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase()}</p>
-                    <p>{day.toLocaleDateString("fr-FR", { day: 'numeric', month: 'numeric' })}</p>
+
+                    {emotion && (
+                      <img
+                        src={emotionIcon[emotion]}
+                        alt={emotion}
+                        className={styles.bullet}
+                      />
+                    )}
+                    <p>
+                      {day
+                        .toLocaleDateString("en-US", { weekday: "short" })
+                        .toUpperCase()}
+                    </p>
+
+                    <p>
+                      {day.toLocaleDateString("fr-FR", {
+                        day: "numeric",
+                        month: "numeric",
+                      })}
+                    </p>
                     <div className={styles.today_dot}></div>
                   </div>
-
                 ) : (
-
                   <div>
                     {/* OTHER DAYS */}
-                    <p>{day.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase()}</p>
-                    <p>{day.toLocaleDateString("fr-FR", { day: 'numeric', month: 'numeric' })}</p>
+                    <p>
+                      {day
+                        .toLocaleDateString("en-US", { weekday: "short" })
+                        .toUpperCase()}
+                    </p>
+                    <p>
+                      {day.toLocaleDateString("fr-FR", {
+                        day: "numeric",
+                        month: "numeric",
+                      })}
+                    </p>
                   </div>
                 )}
-
-                {emotion && (
-                  <img src={emotionIcon[emotion]} alt={emotion} className={styles.bullet} />
-                )}
-              </div>);
+              </div>
+            );
           })}
         </div>
 
         <div className={styles.main}>
-          <h2 className={styles.home_title}>Hi {username}, how do you feel today?</h2>
-          <img src="/Logo/Colors-Wheel.png" alt="The color wheel, representing the colors of emotions. Each petal represents a color that represents an emotion." />
+          <h2 className={styles.home_title}>
+            Hi {username}, how do you feel today?
+          </h2>
+          <img
+            src="/Logo/Colors-Wheel.png"
+            alt="The color wheel, representing the colors of emotions. Each petal represents a color that represents an emotion."
+          />
 
           <MediaQuery minWidth={550}>
-            <button autoFocus >
-              <Link to="/form">
-                New emotion
-              </Link>
+            <button autoFocus>
+              <Link to="/form">New emotion</Link>
             </button>
           </MediaQuery>
         </div>
       </section>
-
-      <MainMenu />
-      <MediaQuery minWidth={550}>
-        <Footer />
-      </MediaQuery>
     </>
   );
 };
