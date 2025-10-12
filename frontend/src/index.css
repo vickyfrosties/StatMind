@@ -33,3 +33,13 @@ a {
 a:visited {
   color: inherit;
 }
+
+button:hover {
+  cursor: pointer;
+}
+
+li,
+ul {
+  text-decoration: none;
+  list-style: none;
+}

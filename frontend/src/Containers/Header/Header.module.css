@@ -59,6 +59,7 @@
       align-items: center;
       font-family: var(--text);
       text-decoration: none;
+      color: #edf2f4;
 
       img {
         width: 50px;

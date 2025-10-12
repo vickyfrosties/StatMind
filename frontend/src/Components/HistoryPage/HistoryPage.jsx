@@ -3,8 +3,6 @@ import "/fonts.modules.css";
 import styles from "./History.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Header from "../../Containers/Header/Header";
-import MediaQuery from "react-responsive";
 
 const HistoryPage = () => {
   const [history, setHistory] = useState([]);
@@ -55,15 +53,12 @@ const HistoryPage = () => {
 
   return (
     <>
-      {/* <MediaQuery minWidth={550}>
-        <Header />
-      </MediaQuery> */}
-      <section className={styles.main_section}>
-        <div className={styles.main_container}>
-          <h2 className={styles.title}>
+      <section className={styles["main_section"]}>
+        <div className={styles["main_container"]}>
+          <h2 className={styles["title"]}>
             {localStorage.getItem("username")}'s History
           </h2>
-          <div className={styles.buttons_container}>
+          <div className={styles["buttons_container"]}>
             <button value={"DAY"} onClick={handleClick}>
               DAY
             </button>
@@ -76,18 +71,20 @@ const HistoryPage = () => {
           </div>
         </div>
 
-        <section className={styles.snd_section}>
-          <div className={styles.history_container}>
+        <section className={styles["snd_section"]}>
+          <div className={styles["history_container"]}>
             {history.length === 0 ? (
-              <p className={styles.empty_page}>
-                No history found yet ＞︿＜. Start the journey by entering
-                today's current mood.
-              </p>
+              <div className={styles["empty_page"]}>
+                <p>
+                  No history found yet ＞︿＜. Start the journey by entering
+                  today's current mood.
+                </p>
+              </div>
             ) : (
-              <ul>
+              <ul className={styles["history_content"]}>
                 {history.map((entry, index) => (
-                  <li key={entry._id}>
-                    <div className={styles.date_light}>
+                  <li key={entry._id} className={styles["data_container"]}>
+                    <div className={styles["date_light"]}>
                       <p>
                         {new Date(entry.createdAt)
                           .toString()
@@ -98,29 +95,29 @@ const HistoryPage = () => {
                         {new Date(entry.createdAt).toLocaleDateString("fr-FR")}
                       </p>
                       <p>
-                        at{" "}
+                        at
                         {new Date(entry.createdAt).toLocaleTimeString("fr-FR")}
                       </p>
                     </div>
 
-                    <div className={styles.history_info_light}>
-                      <div className={styles.icon_emotion}>
+                    <div className={styles["history_info_light"]}>
+                      <div className={styles["icon_emotion"]}>
                         <img
                           src={emotionsIcons[entry.emotions]}
                           alt={entry.emotions}
                         />
-                        <p className={styles.history}>{entry.emotions}</p>
+                        <p className={styles["history"]}>{entry.emotions}</p>
                       </div>
 
-                      <div className={styles.infos}>
-                        <p className={styles.history}>{entry.description}</p>
-                        <p className={styles.history}>
+                      <div className={styles["infos"]}>
+                        <p className={styles["history"]}>{entry.description}</p>
+                        <p className={styles["history"]}>
                           Today's song : {entry.favoriteMusic}
                         </p>
-                        <p className={styles.history}>
+                        <p className={styles["history"]}>
                           Today's book : {entry.favoriteBook}
                         </p>
-                        <p className={styles.history}>
+                        <p className={styles["history"]}>
                           {entry.pictureOfTheDay.slice(12)}
                         </p>
                       </div>
@@ -132,7 +129,6 @@ const HistoryPage = () => {
           </div>
         </section>
       </section>
-      <MainMenu />
     </>
   );
 };
