@@ -12,6 +12,7 @@ const Header = () => {
           <h3>StatMind.</h3>
           <h3>Reflect. Track. Grow.</h3>
         </div>
+
         <nav className={styles["navbar"]}>
           <ul>
             <Link to="/home">
