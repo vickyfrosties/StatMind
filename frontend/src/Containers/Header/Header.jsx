@@ -5,7 +5,9 @@ const Header = () => {
   const username = localStorage.getItem("username");
 
   const location = useLocation();
-  const isLaunchingPage = location.pathname === "/";
+  const isLaunchingPage = ["/", "/register", "/login"].includes(
+    location.pathname
+  );
 
   return (
     <>
