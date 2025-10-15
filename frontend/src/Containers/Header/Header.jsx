@@ -1,12 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./Header.module.css";
 
 const Header = () => {
   const username = localStorage.getItem("username");
 
+  const location = useLocation();
+  const isLaunchingPage = location.pathname === "/";
+
   return (
     <>
-      <header className={styles["header_container"]}>
+      <header
+        className={styles["header_container"]}
+        style={isLaunchingPage ? { display: "none" } : { display: "flex" }}
+      >
         <div className={styles["header_container_logo"]}>
           <img src="/Logo/StatMind - Logo.png" alt="StatMind Logo" />
           <h3>StatMind.</h3>
