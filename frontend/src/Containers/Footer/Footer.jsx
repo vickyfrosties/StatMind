@@ -8,10 +8,10 @@ const Footer = () => {
   return (
     <>
       <footer
-        className={styles.footer}
+        className={styles["footer"]}
         style={paths ? { display: "none" } : { display: "block" }}
       >
-        <p>2024 - StatMind</p>
+        <p>{new Date().getFullYear()} - StatMind</p>
       </footer>
     </>
   );
