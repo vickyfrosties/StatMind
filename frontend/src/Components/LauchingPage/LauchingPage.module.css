@@ -11,6 +11,10 @@
   justify-content: space-evenly;
   align-items: center;
 
+  .logo {
+    height: 200px;
+  }
+
   .buttons_section {
     width: 50%;
     height: 120px;
@@ -75,12 +79,6 @@
       font-weight: 600;
       font-style: normal;
     }
-  }
-
-  .logo {
-    width: 175px;
-    width: 175px;
-    margin-bottom: 1rem;
   }
 
   .buttons_section {
