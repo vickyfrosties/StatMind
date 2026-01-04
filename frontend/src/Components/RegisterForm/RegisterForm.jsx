@@ -42,7 +42,6 @@ const RegisterForm = () => {
 
             <form className={styles["formulaire"]}>
               <label className={styles["labels"]} htmlFor="username">
-                Username
                 <input
                   aria-label="Input Username"
                   id="username"
@@ -54,7 +53,6 @@ const RegisterForm = () => {
               </label>
 
               <label className={styles["labels"]} htmlFor="email">
-                Email adress
                 <input
                   aria-label="Input Email"
                   id="email"
@@ -66,7 +64,6 @@ const RegisterForm = () => {
               </label>
 
               <label className={styles["labels"]} htmlFor="password">
-                Password
                 <input
                   aria-label="Input Password"
                   id="password"

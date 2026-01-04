@@ -40,8 +40,7 @@ const LoginForm = () => {
             <h2>Welcome back ! Log in to your account to continue.</h2>
 
             <form className={styles["formulaire"]}>
-              <label className={styles.labels} htmlFor="username">
-                Enter your username :
+              <label className={styles["labels"]} htmlFor="username">
                 <input
                   type="text"
                   name="Username"
@@ -50,8 +49,7 @@ const LoginForm = () => {
                 />
               </label>
 
-              <label className={styles.labels} htmlFor="password">
-                Enter your password :
+              <label className={styles["labels"]} htmlFor="password">
                 <input
                   type="password"
                   name="Password"
