@@ -1,12 +1,84 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
+.container {
   width: 100%;
   height: 100vh;
+  display: flex;
+  background-color: var(--dark);
+  display: flex;
+
+  .logo_section {
+    background-color: #edf2f4;
+    width: 70%;
+    border-radius: 0 3ch 3ch 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      margin-left: 1rem;
+    }
+  }
+
+  .log_section {
+    width: 30%;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+
+    .form_section {
+      color: #edf2f4;
+      width: 100%;
+      min-height: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      .formulaire {
+        width: 100%;
+        height: 250px;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+
+        input {
+          width: 100%;
+          padding: 7px;
+          background-color: #edf2f4;
+          border: 1px solid #202c31;
+          border-radius: 5px;
+          color: #202c31;
+        }
+      }
+
+      .register_btn {
+        width: 100%;
+        padding: 5px;
+        background-color: #edf2f4;
+        color: var(--dark);
+        border-radius: 5px;
+        border: none;
+        font-family: "Khand", serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 20px;
+
+        &:hover {
+          background-color: #cbd1d3;
+        }
+      }
+
+      .redirection {
+        margin-top: 1rem;
+        text-align: center;
+
+        .signin_span {
+          text-decoration: underline;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: 390px) and (max-width: 550px) {
@@ -54,16 +126,16 @@ body {
       width: 100%;
       height: 40px;
       padding: 1rem;
-      background-color: #EDF2F4;
-      border: 1px solid #202C31;
+      background-color: #edf2f4;
+      border: 1px solid #202c31;
       border-radius: 5px;
-      color: #202C31;
+      color: #202c31;
     }
 
     input:focus {
-      background-color: #202C31;
+      background-color: #202c31;
       border: 3px solid dark;
-      color: #EDF2F4;
+      color: #edf2f4;
       color: #65d870;
       font-weight: 600;
     }
@@ -79,9 +151,9 @@ body {
     .register_btn {
       width: 250px;
       height: 35px;
-      background-color: #202C31;
+      background-color: #202c31;
       border-radius: 5px;
-      color: #EDF2F4;
+      color: #edf2f4;
       border-radius: 5px;
       border: none;
       font-family: "Khand", serif;
@@ -110,6 +182,5 @@ body {
   a {
     text-decoration: none;
     color: black;
-
   }
 }

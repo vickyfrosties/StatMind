@@ -26,50 +26,60 @@ const LoginForm = () => {
 
   return (
     <>
-      <div className={styles.first_section}>
-        <img src="./Logo/LogoWhiteV.png" alt="StatMind Logo" />
-      </div>
+      <section className={styles["container"]}>
+        <div className={styles["logo_section"]}>
+          <img src="/Logo/StatMindLogo.png" alt="Logo StatMind" />
+          <div>
+            <h3>StatMind.</h3>
+            <h3>Reflect. Track. Grow.</h3>
+          </div>
+        </div>
 
-      <h2>Welcome back! Log in to continue.</h2>
+        <div className={styles["log_section"]}>
+          <div className={styles["form_section"]}>
+            <h2>Welcome back ! Log in to your account to continue.</h2>
 
-      <form className={styles.formulaire}>
-        <label className={styles.labels} htmlFor="username">
-          Enter your username :
-          <input
-            type="text"
-            name="Username"
-            placeholder="Username"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
+            <form className={styles["formulaire"]}>
+              <label className={styles.labels} htmlFor="username">
+                Enter your username :
+                <input
+                  type="text"
+                  name="Username"
+                  placeholder="Username"
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </label>
 
-        <label className={styles.labels} htmlFor="password">
-          Enter your password :
-          <input
-            type="password"
-            name="Password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-      </form>
+              <label className={styles.labels} htmlFor="password">
+                Enter your password :
+                <input
+                  type="password"
+                  name="Password"
+                  placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </label>
+            </form>
 
-      <Link className={styles.btn_container} to="/">
-        <button
-          onClick={handleSubmit}
-          type="submit"
-          className={styles.register_btn}
-        >
-          Log in
-        </button>
-      </Link>
+            <Link className={styles["btn_container"]} to="/">
+              <button
+                onClick={handleSubmit}
+                type="submit"
+                className={styles["register_btn"]}
+              >
+                Log in
+              </button>
+            </Link>
 
-      <p className={styles.p_login}>
-        Don't have an account ?
-        <span className={styles.signin_span}>
-          <Link to="/register">Create an account</Link>
-        </span>
-      </p>
+            <p className={styles["redirection"]}>
+              Don't have an account ?
+              <span className={styles["signin_span"]}>
+                <Link to="/register">Create an account</Link>
+              </span>
+            </p>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
