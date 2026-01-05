@@ -1,8 +1,6 @@
 import styles from "./HomePage.module.css";
-import MainMenu from "../../Containers/Menu/MainMenu";
 import Header from "../../Containers/Header/Header";
 import Footer from "../../Containers/Footer/Footer";
-import MediaQuery from "react-responsive";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -62,8 +60,9 @@ const HomePage = () => {
 
   return (
     <>
-      <section className={styles.main_container}>
-        <div className={styles.calendar_container}>
+      <section className={styles["main_container"]}>
+        <Header />
+        <div className={styles["calendar_container"]}>
           {weekDays.map((day) => {
             // format the date as YYYY-MM-DD to make it match w date in db
             const dateString = day.toISOString().split("T")[0];
@@ -76,16 +75,14 @@ const HomePage = () => {
               entry && entry.emotions.length > 0 ? entry.emotions[0] : null;
 
             return (
-              <div key={dateString} className={styles.date_container}>
+              <div key={dateString} className={styles["date_container"]}>
                 {dateString === new Date().toISOString().split("T")[0] ? (
-                  <div className={styles.today}>
-                    {/* TODAY'S DATE */}
-
+                  <div className={styles["today"]}>
                     {emotion && (
                       <img
                         src={emotionIcon[emotion]}
                         alt={emotion}
-                        className={styles.bullet}
+                        className={styles["bullet"]}
                       />
                     )}
                     <p>
@@ -100,11 +97,10 @@ const HomePage = () => {
                         month: "numeric",
                       })}
                     </p>
-                    <div className={styles.today_dot}></div>
+                    <div className={styles["today_dot"]}></div>
                   </div>
                 ) : (
                   <div>
-                    {/* OTHER DAYS */}
                     <p>
                       {day
                         .toLocaleDateString("en-US", { weekday: "short" })
@@ -123,8 +119,8 @@ const HomePage = () => {
           })}
         </div>
 
-        <div className={styles.main}>
-          <h2 className={styles.home_title}>
+        <div className={styles["main"]}>
+          <h2 className={styles["home_title"]}>
             Hi {username}, how do you feel today?
           </h2>
           <img
@@ -132,12 +128,11 @@ const HomePage = () => {
             alt="The color wheel, representing the colors of emotions. Each petal represents a color that represents an emotion."
           />
 
-          <MediaQuery minWidth={550}>
-            <button autoFocus>
-              <Link to="/form">New emotion</Link>
-            </button>
-          </MediaQuery>
+          <button autoFocus className={styles["add_button"]}>
+            <Link to="/form">Add new emotion</Link>
+          </button>
         </div>
+        <Footer />
       </section>
     </>
   );
